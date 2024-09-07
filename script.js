@@ -14,8 +14,8 @@ input.addEventListener('change',function(){
         //guardar a leitura desse arquivo na variavel string
         dados = reader.result
         //chamar função e passar a variavel string como parametro para que os dados retornem como um array
-        Linhas = Csv_reader(dados)
-        console.log(array)
+        array_dados = Csv_reader(dados)
+        console.log(array_dados)
     })
     //ler os dados como texto
     reader.readAsText(arquivos)
@@ -25,31 +25,35 @@ input.addEventListener('change',function(){
 function Csv_reader(data){
     //array que contera todas as celulas
     var linhas = []
-    //
-    var inicio= 0
+    //variavel que marca o inicio do dado
+    var inicio_palavra= 0
     var string = '';
-    var retirada = 0
-    for (var v = 0; v <= data.length;v++){
-        if (data[v] == ',' ){
-            for (inicio; inicio<v ;inicio++){
-                string = string+data[inicio]
+    //laço for para percorrer todos os caracteres da string data que foi passada no parametro da função
+    for (var fim_palavra = 0; fim_palavra<= data.length;fim_palavra++){
+        //condição para encontrar a virgula que separa os dados
+        if (data[fim_palavra] == ',' ){
+            //laço for que percorre a string até a virgula e guarda ela na variavel string
+            for (inicio_palavra; inicio_palavra<fim_palavra ;inicio_palavra++){
+                string = string+data[inicio_palavra]
                 
 
             }
+            //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo
             linhas.push(string)
             string = ''
-            inicio++
+            inicio_palavra++
             
         }
-        if (typeof dados[v] == "undefined"){
-            for (inicio; inicio<v ;inicio++){
-                string = string+data[inicio]
+        //condição que identifica se está na ultima lina e guarda o ultimo valor por conta de nao haver virgula
+        if (typeof dados[fim_palavra] == "undefined"){
+            for (inicio_palavra; inicio_palavra<fim_palavra ;inicio_palavra++){
+                string = string+data[inicio_palavra]
                 
 
             }
             linhas.push(string)
             string = ''
-            inicio++
+            inicio_palavra++
         }
         
         
