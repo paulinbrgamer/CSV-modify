@@ -22,7 +22,7 @@ input.addEventListener('change',function(){
     reader.readAsText(arquivos)
 })
 
-//função que pega os dados em forma de texto e faz a analise lexa para dividir os dados e guardar cada "celula" em um array
+    //função que pega os dados em forma de texto e faz a analise lexa para dividir os dados e guardar cada "celula" em um array
 function Csv_reader(data){
     //array que contera todas as celulas
     var linhas = []
