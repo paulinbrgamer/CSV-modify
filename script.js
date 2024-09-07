@@ -25,18 +25,36 @@ input.addEventListener('change',function(){
 function Csv_reader(data){
     //array que contera todas as celulas
     var linhas = []
+    var linhas_totais = []
+    var cont_linhas = 0
     //variavel que marca o inicio do dado
     var inicio_palavra= 0
     var string = '';
     //laço for para percorrer todos os caracteres da string data que foi passada no parametro da função
     for (var fim_palavra = 0; fim_palavra<= data.length;fim_palavra++){
+        //condição para encontrar as quebras de linhas que ficam no arquivo CSV e nao lelas como dados
+        if (data[fim_palavra] === '\r'){
+
+            //laço for que percorre a string até a virgula e guarda ela na variavel string
+            for (inicio_palavra; inicio_palavra<fim_palavra;inicio_palavra++){
+                console.log(dados[inicio_palavra] + '-' + inicio_palavra)
+                string = string+data[inicio_palavra]
+            }
+            //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
+            linhas.push(string)
+            linhas_totais.push(linhas)
+            linhas = []
+            string = ''
+            //pular o \r e o \n por isso numero é dois
+            inicio_palavra+= 2
+        }
         //condição para encontrar a virgula que separa os dados
         if (data[fim_palavra] == ',' ){
+
             //laço for que percorre a string até a virgula e guarda ela na variavel string
             for (inicio_palavra; inicio_palavra<fim_palavra ;inicio_palavra++){
+                console.log(dados[inicio_palavra] + '-' + inicio_palavra)
                 string = string+data[inicio_palavra]
-                
-
             }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo
             linhas.push(string)
@@ -51,7 +69,10 @@ function Csv_reader(data){
                 
 
             }
+            //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
             linhas.push(string)
+            linhas_totais.push(linhas)
+            linhas = []
             string = ''
             inicio_palavra++
         }
@@ -60,5 +81,5 @@ function Csv_reader(data){
         
    }
    
-    return linhas
+    return linhas_totais
 }
