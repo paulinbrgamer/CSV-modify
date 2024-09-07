@@ -1,9 +1,10 @@
 const input = document.querySelector('#dados')
+var dados;
 input.addEventListener('change',function(){
     const arquivos = this.files[0]
     const reader = new FileReader()
     reader.addEventListener('load',function(){
-        var dados;
+        
         dados = reader.result
         array = Csv_reader(dados)
         console.log(array)
