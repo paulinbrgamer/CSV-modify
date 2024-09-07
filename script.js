@@ -26,7 +26,6 @@ function Csv_reader(data){
     //array que contera todas as celulas
     var linhas = []
     var linhas_totais = []
-    var cont_linhas = 0
     //variavel que marca o inicio do dado
     var inicio_palavra= 0
     var string = '';
