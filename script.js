@@ -2,7 +2,8 @@
 const input = document.querySelector('#dados')
 //variavel string para guardar os dados em forma de texto do arquivo csv
 var dados;
-
+//variavel com todas aslinhas guardadas em arrays diferentes
+var array_dados = [];
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
     //selecionar o primeiro arquivo e guardar na variavel
@@ -36,7 +37,7 @@ function Csv_reader(data){
 
             //laço for que percorre a string até a virgula e guarda ela na variavel string
             for (inicio_palavra; inicio_palavra<fim_palavra;inicio_palavra++){
-                console.log(dados[inicio_palavra] + '-' + inicio_palavra)
+                
                 string = string+data[inicio_palavra]
             }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
@@ -52,7 +53,7 @@ function Csv_reader(data){
 
             //laço for que percorre a string até a virgula e guarda ela na variavel string
             for (inicio_palavra; inicio_palavra<fim_palavra ;inicio_palavra++){
-                console.log(dados[inicio_palavra] + '-' + inicio_palavra)
+                
                 string = string+data[inicio_palavra]
             }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo
