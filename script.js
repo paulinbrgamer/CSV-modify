@@ -99,6 +99,7 @@ function CriarTb(table_data){
         //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[table_row].length;table_collum++){
             var tb_th = document.createElement('th')
+            tb_th.style.backgroundColor = 'rgb(189, 223, 223)'
             tb_th.textContent = table_data[table_row][table_collum]
             tb_tr.appendChild(tb_th)
             table.appendChild(tb_tr)
@@ -126,7 +127,8 @@ function CriarTb(table_data){
             barra.style.width = ((barra.value.length+1)*10)+'px'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
-            barra.style.padding = '10px'
+            barra.style.padding = '10px' 
+            barra.classList.add('entrada')
             tb_td.appendChild(barra)
             tb_tr.appendChild(tb_td)
             table.appendChild(tb_tr)
@@ -147,6 +149,7 @@ window.document.addEventListener('click',function(event){
            })
            
         }
+        
     })
 })
 
