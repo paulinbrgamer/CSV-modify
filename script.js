@@ -140,7 +140,7 @@ function CriarTb(table_data){
     return table
 }
 
-window.document.addEventListener('click',function(event){
+window.document.addEventListener('keydown',function(event){
     array_cells.forEach(ids =>{
         if (event.target.id == ids){
            var s = document.getElementById(ids)
