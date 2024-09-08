@@ -90,15 +90,30 @@ function CriarTb(table_data){
     const table = document.createElement('table')
     
     for(var table_row = 0; table_row<table_data.length;table_row++){
+        
        //pegar cabeçalho
        if (table_row == 0){
-        for (var table_collum = 0;table_collum<table_data[table_collum];table_collum++){
-            
+        var tb_tr = document.createElement('tr')
+        for (var table_collum = 0;table_collum<table_data[table_row].length;table_collum++){
+            var tb_th = document.createElement('th')
+            tb_th.textContent = table_data[table_row][table_collum]
+            tb_tr.appendChild(tb_th)
+            table.appendChild(tb_tr)
         }
        }
        else{
-
+        var tb_tr = document.createElement('tr')
+        tb_tr.id = `tr${table_row}`
+        for (var table_collum = 0;table_collum<table_data[0].length;table_collum++){
+            var tb_td = document.createElement('td')
+            tb_td.id = `th${table_row}-td${table_collum}`
+            tb_td.textContent = table_data[table_row][table_collum]
+            
+            tb_tr.appendChild(tb_td)
+            table.appendChild(tb_tr)
+        }
        }
+       
     }
     return table
 }
