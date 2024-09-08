@@ -232,6 +232,6 @@ function SalvarConteudo(){
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
    link.download = 'Tabela_atualizada.csv'
-   link.click()
+   link.click(z)
 }
 
