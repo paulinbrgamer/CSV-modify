@@ -105,13 +105,31 @@ function CriarTb(table_data){
        //pegar cabeçalho
        if (table_row == 0){
         var tb_tr = document.createElement('tr')
+        tb_tr.id = `tr${table_row}`
         //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[table_row].length;table_collum++){
             var tb_th = document.createElement('th')
+            tb_th.id = `row-${table_row}-col-${table_data[0][table_collum]}`
+            var barra = document.createElement('input')
+            barra.type = 'text'
+            barra.id = `cell-${table_row}-${table_collum}`
+            array_cells.push(barra.id)
             tb_th.style.backgroundColor = 'rgb(189, 223, 223)'
-            tb_th.textContent = table_data[table_row][table_collum]
+            if (table_data[table_row][table_collum] === undefined){
+                barra.value = ' '
+            }
+            else{
+              barra.value = table_data[table_row][table_collum]
+            }
+            barra.style.width = ((barra.value.length+1)*10)+'px'
+            barra.style.border = 'none'
+            barra.style.backgroundColor = 'transparent'
+            barra.style.textAlign = 'center'
+            barra.style.fontWeight = '600'
+            tb_th.appendChild(barra)
             tb_tr.appendChild(tb_th)
             table.appendChild(tb_tr)
+            
         }
        }
        else{
@@ -125,7 +143,7 @@ function CriarTb(table_data){
             tb_td.id = `row-${table_row}-col-${table_data[0][table_collum]}`
             var barra = document.createElement('input')
             barra.type = 'text'
-            barra.id = `cell-${table_row}-${table_collum+1}`
+            barra.id = `cell-${table_row}-${table_collum}`
             array_cells.push(barra.id)
             if (table_data[table_row][table_collum] === undefined){
                 barra.value = ' '
@@ -168,13 +186,6 @@ window.document.addEventListener('keydown',function(event){
 
 function SalvarConteudo(){
     //limpando array
-    array_dados = []
-    dados = ''
-    salvar.style.display = 'none'
-    array_cells.forEach(ids =>{
-        
-        array_dados.push(document.getElementById(ids).value)
-        
-    })
+    
     console.log(array_dados)
 }
