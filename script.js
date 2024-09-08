@@ -13,7 +13,7 @@ salvar.value = 'Salvar'
 salvar.style.display = 'none'
 salvar.classList.add('hov')
 salvar.onclick = SalvarConteudo
-var numero_de_colunas = 1
+var numero_de_colunas = 0
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
     //selecionar o primeiro arquivo e guardar na variavel
@@ -206,5 +206,18 @@ window.document.addEventListener('keydown',function(event){
 })
 
 function SalvarConteudo(){
-    console.log(array_dados)
+    dados = ''
+    array_dados.forEach(function(linha,index){
+        linha.forEach(function(coluna,ind){
+            if (ind == numero_de_colunas){
+                dados = dados + coluna
+            }
+            else{
+               dados = dados + coluna+',' 
+            }
+            
+        })
+        dados = dados + '\r\n'
+    })
+    console.log(dados)
 }
