@@ -24,8 +24,7 @@ input.addEventListener('change',function(){
     //ler os dados como texto
     reader.readAsText(arquivos)
 })
-
-    //função que pega os dados em forma de texto e faz a analise lexa para dividir os dados e guardar cada "celula" em um array
+//função que pega os dados em forma de texto e faz a analise lexa para dividir os dados e guardar cada "celula" em um array
 function Csv_reader(data){
     //array que contera todas as celulas
     var linhas = []
@@ -86,14 +85,17 @@ function Csv_reader(data){
    
     return linhas_totais
 }
+//função que cria a tabela e tem como parametro o array de linhas do CSV
 function CriarTb(table_data){
+    //cria a tabela
     const table = document.createElement('table')
-    
+    table.id = 'table'
+    //laço for para percorrer cada array que equivale a uma row
     for(var table_row = 0; table_row<table_data.length;table_row++){
-        
        //pegar cabeçalho
        if (table_row == 0){
         var tb_tr = document.createElement('tr')
+        //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[table_row].length;table_collum++){
             var tb_th = document.createElement('th')
             tb_th.textContent = table_data[table_row][table_collum]
@@ -102,18 +104,55 @@ function CriarTb(table_data){
         }
        }
        else{
+        //criar linha nova
         var tb_tr = document.createElement('tr')
         tb_tr.id = `tr${table_row}`
+        //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[0].length;table_collum++){
             var tb_td = document.createElement('td')
-            tb_td.id = `th${table_row}-td${table_collum}`
+    
+            tb_td.id = `row-${table_row}-col-${table_data[0][table_collum]}`
             tb_td.textContent = table_data[table_row][table_collum]
-            
             tb_tr.appendChild(tb_td)
+            Cell_edit(tb_td)
+            Cell_edit(tb_th)
             table.appendChild(tb_tr)
         }
-       }
-       
+       }  
     }
+    function Cell_edit(element){
+        //evento de click na celula
+        element.addEventListener('click',function(event){
+        //criar barra de input
+        var id_elemento = event.target.id
+        var elemento = document.getElementById(id_elemento)
+        var elemento_style = window.getComputedStyle(elemento)
+        var barra = document.createElement('input')
+        barra.type = 'text'
+        barra.style.width = elemento_style.width
+        barra.style.height = elemento_style.height
+        barra.style.border = 'none'
+        barra.value = elemento.innerText
+        barra.style.textAlign = 'center'
+        elemento.innerText = ''
+        elemento.appendChild(barra)
+        
+        barra.addEventListener('keydown',function(event){
+            if (event.key === 'Enter'){
+                elemento.innerText = barra.value
+                elemento.removeChild(barra)
+                
+            }
+            
+        })
+        barra.addEventListener('blur',function(){
+            elemento.innerText = barra.value
+            elemento.removeChild(barra)
+        })
+        })
+    }
+    
+
     return table
 }
+
