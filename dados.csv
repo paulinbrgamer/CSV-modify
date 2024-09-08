@@ -1,5 +1,3 @@
-Nome,idade,Sexo,CPF
-Paulo,20,M,067.108
-jose vitor,30,M
-fernando,10,M
-luana,30,F
+ID,Nome,Idade,Cidade,Profissão
+1,Paulo,18,Castanhal,Programador
+2,Jose,22,Belém,Vagabundo

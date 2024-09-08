@@ -4,7 +4,15 @@ const input = document.querySelector('#dados')
 var dados;
 //variavel com todas aslinhas guardadas em arrays diferentes
 var array_dados = [];
+//array que contem o id de todas as cells
 var array_cells = []
+//botao de salvar
+var salvar = document.createElement('input')
+salvar.type = 'button'
+salvar.value = 'Salvar'
+salvar.style.display = 'none'
+salvar.classList.add('hov')
+salvar.onclick = SalvarConteudo
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
     //selecionar o primeiro arquivo e guardar na variavel
@@ -20,6 +28,7 @@ input.addEventListener('change',function(){
         array_dados = Csv_reader(dados)
         const body = document.querySelector("body")
         body.appendChild(CriarTb(array_dados))
+        document.querySelector('body').appendChild(salvar)
         
     })
     //ler os dados como texto
@@ -127,7 +136,6 @@ function CriarTb(table_data){
             barra.style.width = ((barra.value.length+1)*10)+'px'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
-            barra.style.padding = '10px' 
             barra.classList.add('entrada')
             tb_td.appendChild(barra)
             tb_tr.appendChild(tb_td)
@@ -146,11 +154,27 @@ window.document.addEventListener('keydown',function(event){
            var s = document.getElementById(ids)
            s.addEventListener('input',function(){
             s.style.width = ((s.value.length+1)*10)+'px'
+            salvar.style.display = 'block'
+           
            })
            
         }
         
     })
+
+    
+
 })
 
-
+function SalvarConteudo(){
+    //limpando array
+    array_dados = []
+    dados = ''
+    salvar.style.display = 'none'
+    array_cells.forEach(ids =>{
+        
+        array_dados.push(document.getElementById(ids).value)
+        
+    })
+    console.log(array_dados)
+}
