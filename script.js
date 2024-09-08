@@ -217,7 +217,21 @@ function SalvarConteudo(){
             }
             
         })
-        dados = dados + '\r\n'
+        if (index < array_dados.length-1){
+            console.log('linha')
+            dados = dados + "\r\n"
+        }
+        
+        
+        
+        
     })
-    console.log(dados)
+    
+   //criar arquivo
+   var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
+   const link = document.createElement('a')
+   link.href = URL.createObjectURL(arquivo)
+   link.download = 'Tabela_atualizada.csv'
+   link.click()
 }
+
