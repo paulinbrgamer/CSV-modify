@@ -4,6 +4,7 @@ const input = document.querySelector('#dados')
 var dados;
 //variavel com todas aslinhas guardadas em arrays diferentes
 var array_dados = [];
+var array_cells = []
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
     //selecionar o primeiro arquivo e guardar na variavel
@@ -19,7 +20,7 @@ input.addEventListener('change',function(){
         array_dados = Csv_reader(dados)
         const body = document.querySelector("body")
         body.appendChild(CriarTb(array_dados))
-        console.log(array_dados)
+        
     })
     //ler os dados como texto
     reader.readAsText(arquivos)
@@ -110,49 +111,43 @@ function CriarTb(table_data){
         //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[0].length;table_collum++){
             var tb_td = document.createElement('td')
-    
+            
             tb_td.id = `row-${table_row}-col-${table_data[0][table_collum]}`
-            tb_td.textContent = table_data[table_row][table_collum]
+            var barra = document.createElement('input')
+            barra.type = 'text'
+            barra.id = `cell-${table_row}-${table_collum+1}`
+            array_cells.push(barra.id)
+            if (table_data[table_row][table_collum] === undefined){
+                barra.value = ' '
+            }
+            else{
+              barra.value = table_data[table_row][table_collum]
+            }
+            barra.style.width = ((barra.value.length+1)*10)+'px'
+            barra.style.border = 'none'
+            barra.style.textAlign = 'center'
+            barra.style.padding = '10px'
+            tb_td.appendChild(barra)
             tb_tr.appendChild(tb_td)
-            Cell_edit(tb_td)
-            Cell_edit(tb_th)
             table.appendChild(tb_tr)
+            
         }
        }  
     }
-    function Cell_edit(element){
-        //evento de click na celula
-        element.addEventListener('click',function(event){
-        //criar barra de input
-        var id_elemento = event.target.id
-        var elemento = document.getElementById(id_elemento)
-        var elemento_style = window.getComputedStyle(elemento)
-        var barra = document.createElement('input')
-        barra.type = 'text'
-        barra.style.width = elemento_style.width
-        barra.style.height = elemento_style.height
-        barra.style.border = 'none'
-        barra.value = elemento.innerText
-        barra.style.textAlign = 'center'
-        elemento.innerText = ''
-        elemento.appendChild(barra)
-        
-        barra.addEventListener('keydown',function(event){
-            if (event.key === 'Enter'){
-                elemento.innerText = barra.value
-                elemento.removeChild(barra)
-                
-            }
-            
-        })
-        barra.addEventListener('blur',function(){
-            elemento.innerText = barra.value
-            elemento.removeChild(barra)
-        })
-        })
-    }
     
-
     return table
 }
+
+window.document.addEventListener('click',function(event){
+    array_cells.forEach(ids =>{
+        if (event.target.id == ids){
+           var s = document.getElementById(ids)
+           s.addEventListener('input',function(){
+            s.style.width = ((s.value.length+1)*10)+'px'
+           })
+           
+        }
+    })
+})
+
 
