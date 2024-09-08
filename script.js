@@ -13,6 +13,7 @@ salvar.value = 'Salvar'
 salvar.style.display = 'none'
 salvar.classList.add('hov')
 salvar.onclick = SalvarConteudo
+var numero_de_colunas = 1
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
     //selecionar o primeiro arquivo e guardar na variavel
@@ -42,6 +43,7 @@ function Csv_reader(data){
     //variavel que marca o inicio do dado
     var inicio_palavra= 0
     var string = '';
+    var primeira_linha = true
     //laço for para percorrer todos os caracteres da string data que foi passada no parametro da função
     for (var fim_palavra = 0; fim_palavra<= data.length;fim_palavra++){
         //condição para encontrar as quebras de linhas que ficam no arquivo CSV e nao lelas como dados
@@ -59,6 +61,7 @@ function Csv_reader(data){
             string = ''
             //pular o \r e o \n por isso numero é dois
             inicio_palavra+= 2
+            primeira_linha = false
         }
         //condição para encontrar a virgula que separa os dados
         if (data[fim_palavra] == ',' ){
@@ -72,6 +75,9 @@ function Csv_reader(data){
             linhas.push(string)
             string = ''
             inicio_palavra++
+            if (primeira_linha == true){
+                numero_de_colunas++
+            }
             
         }
         //condição que identifica se está na ultima lina e guarda o ultimo valor por conta de nao haver virgula
@@ -87,6 +93,9 @@ function Csv_reader(data){
             linhas = []
             string = ''
             inicio_palavra++
+            if (primeira_linha == true){
+                numero_de_colunas++
+            }
         }
         
         
@@ -174,6 +183,18 @@ window.document.addEventListener('keydown',function(event){
             s.style.width = ((s.value.length+1)*10)+'px'
             salvar.style.display = 'block'
            
+            //percorrer a string do id e retornar o id no inteiro
+            var id_str = s.id
+            var id_int = []
+            for (var char = 0; char<id_str.length;char++){
+                if (!isNaN(id_str[char])){
+                    id_int.push(id_str[char])
+                    
+                }
+            }
+            //modificar no array dos dados o valor que esta
+            array_dados[id_int[0]][id_int[1]] = s.value
+            
            })
            
         }
@@ -185,7 +206,5 @@ window.document.addEventListener('keydown',function(event){
 })
 
 function SalvarConteudo(){
-    //limpando array
-    
     console.log(array_dados)
 }
