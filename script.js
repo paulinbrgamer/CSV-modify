@@ -10,12 +10,15 @@ input.addEventListener('change',function(){
     const arquivos = this.files[0]
     //instanciar um leitor para esse arquivo
     const reader = new FileReader()
+
     //adicionar um evento ao leitor para quando o arquivo for carregado
     reader.addEventListener('load',function(){
         //guardar a leitura desse arquivo na variavel string
         dados = reader.result
         //chamar função e passar a variavel string como parametro para que os dados retornem como um array
         array_dados = Csv_reader(dados)
+        const body = document.querySelector("body")
+        body.appendChild(CriarTb(array_dados))
         console.log(array_dados)
     })
     //ler os dados como texto
@@ -82,4 +85,20 @@ function Csv_reader(data){
    }
    
     return linhas_totais
+}
+function CriarTb(table_data){
+    const table = document.createElement('table')
+    
+    for(var table_row = 0; table_row<table_data.length;table_row++){
+       //pegar cabeçalho
+       if (table_row == 0){
+        for (var table_collum = 0;table_collum<table_data[table_collum];table_collum++){
+            
+        }
+       }
+       else{
+
+       }
+    }
+    return table
 }
