@@ -235,6 +235,7 @@ window.document.addEventListener('keydown',function(event){
 
 })
 function addLinha(){
+    salvar.style.display = 'block'
     numero_de_linhas++
     var tr = document.createElement('tr')
     var tb = document.getElementById('table')
@@ -256,10 +257,10 @@ function addLinha(){
         tb.appendChild(tr)
         array_dados[numero_de_linhas-1][col] =''
     }
-    
-    console.log(array_dados)
+
 }
 function addColuna(){
+    salvar.style.display = 'block'
     numero_de_colunas++
     for (var linha = 0; linha< numero_de_linhas;linha++){
         if (linha==0){
@@ -295,7 +296,9 @@ function addColuna(){
             barra.classList.add('entrada')
             td.appendChild(barra)
             tr.appendChild(td)
+            
         }
+        array_dados[linha][numero_de_colunas] =' '
     }
     
     
@@ -318,11 +321,11 @@ function SalvarConteudo(){
             dados = dados + "\r\n"
         }
         
-        console.log(array_dados)
+       
         
         
     })
-    
+    console.log(array_dados)
    var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
