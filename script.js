@@ -29,11 +29,16 @@ input.addEventListener('change',function(){
         //chamar função e passar a variavel string como parametro para que os dados retornem como um array
         array_dados = Csv_reader(dados)
         const body = document.querySelector("body")
+        const divmax = document.createElement('div')
         const div_tab = document.createElement('div')
+        const div_ta2 = document.createElement('div')
+        div_ta2.classList.add('container_tab')
+        div_ta2.style.width = '92%'
         div_tab.classList.add('container_tab')
         div_tab.id = 'div_tab'
         div_tab.appendChild(CriarTb(array_dados))
-        body.appendChild(div_tab)
+        divmax.appendChild(div_tab)
+        divmax.appendChild(div_ta2)
         document.querySelector('body').appendChild(salvar)
         var add_btn = document.createElement('button')
         add_btn.classList.add('addbutton')
@@ -44,7 +49,13 @@ input.addEventListener('change',function(){
         add_btnL.onclick = addLinha
         add_btnL.id ='addL'
         div_tab.appendChild(add_btn)
-        document.querySelector('body').appendChild(add_btnL)
+        div_tab.appendChild(document.createElement('br'))
+        div_ta2.appendChild(add_btnL)
+        div_ta2.style.margin = '0px'
+        div_ta2.style.padding = '0px'
+        div_tab.style.margin = '0px'
+        div_tab.style.padding = '0px'
+        body.appendChild(divmax)
         
     })
     //ler os dados como texto
@@ -126,13 +137,13 @@ function CriarTb(table_data){
     
     const table = document.createElement('table')
     table.id = 'table'
+    table.style.margin = '10px'
     //laço for para percorrer cada array que equivale a uma row
     for(var table_row = 0; table_row<table_data.length;table_row++){
        //pegar cabeçalho
        if (table_row == 0){
         var tb_tr = document.createElement('tr')
         tb_tr.id = `tr${table_row}`
-        numero_de_colunas++
         //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[table_row].length;table_collum++){
             var tb_th = document.createElement('th')
@@ -212,7 +223,6 @@ window.document.addEventListener('keydown',function(event){
                 }
             }
             //modificar no array dos dados o valor que esta
-            
             array_dados[id_int[0]][id_int[1]] = s.value
             
            })
@@ -226,16 +236,15 @@ window.document.addEventListener('keydown',function(event){
 })
 function addLinha(){
     numero_de_linhas++
-    console.log(numero_de_linhas)
     var tr = document.createElement('tr')
     var tb = document.getElementById('table')
-    tr.id = `tr${numero_de_linhas}`
+    tr.id = `tr${numero_de_linhas-1}`
     array_dados.push([])
-    for (var col = 0;col <numero_de_colunas;col++){
+    for (var col = 0;col <=numero_de_colunas;col++){
         var td = document.createElement('td')
         var barra = document.createElement('input')
         barra.type = 'text'
-        barra.id = `cell-${numero_de_colunas}-${col}`
+        barra.id = `cell-${array_dados.length-1}-${col}`
         array_cells.push(barra.id)
         barra.style.width = ((barra.value.length+1)*10)+'px'
         barra.style.border = 'none'
@@ -245,18 +254,20 @@ function addLinha(){
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
+        array_dados[numero_de_linhas-1][col] =''
     }
+    
+    console.log(array_dados)
 }
 function addColuna(){
     numero_de_colunas++
-    console.log(numero_de_colunas)
     for (var linha = 0; linha< numero_de_linhas;linha++){
         if (linha==0){
             var tr = document.getElementById(`tr${linha}`) 
             var th = document.createElement('th')
             var barra = document.createElement('input')
             barra.type = 'text'
-            barra.id = `cell-${linha}-${numero_de_colunas}`
+            barra.id = `cell-${0}-${numero_de_colunas}`
             array_cells.push(barra.id)
             barra.style.width = ((barra.value.length+1)*10)+'px'
             barra.style.border = 'none'
@@ -266,10 +277,11 @@ function addColuna(){
             barra.style.fontWeight = '600'
             barra.value = ' '
             th.appendChild(barra)
-            th.id = `row-${linha}-cow-${numero_de_colunas+1}`
+            th.id = `row-${0}-cow-${numero_de_colunas+1}`
             tr.appendChild(th)
         }
         else{
+            
             var tr = document.getElementById(`tr${linha}`) 
             var td = document.createElement('td')
             var barra = document.createElement('input')
@@ -284,7 +296,6 @@ function addColuna(){
             td.appendChild(barra)
             tr.appendChild(td)
         }
-        
     }
     
     
@@ -307,7 +318,7 @@ function SalvarConteudo(){
             dados = dados + "\r\n"
         }
         
-        
+        console.log(array_dados)
         
         
     })
