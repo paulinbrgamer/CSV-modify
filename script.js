@@ -225,13 +225,32 @@ window.document.addEventListener('keydown',function(event){
             for (var char = 0; char<id_str.length;char++){
                 if (!isNaN(id_str[char])){
                     id_int.push(id_str[char])
+                    if (id_str[char+1] == '-'){
+                        id_int.push(id_str[char+1])
+                    }
+                    
                     
                 }
             }
-            console.log("int1 "+ id_int[0])
-            console.log("int2 "+ id_int[1])
+            var int1 = ''
+            var int2 = ''
+            var chave = 0
+            id_int.forEach(function(v){
+                if(v == '-'){
+                    chave =1
+                }
+                if(v!= '-' && chave ==0){
+                    int1 += v
+                    
+                }
+                if(v!= '-' && chave >0){
+                    int2 += v
+                }
+            })
+            console.log("int1 "+ int1)
+            console.log("int2 "+ int2)
             //modificar no array dos dados o valor que esta
-            array_dados[id_int[0]][id_int[1]] = s.value
+            array_dados[int1][int2] = s.value
             
            })
            
@@ -333,7 +352,7 @@ function SalvarConteudo(){
         
         
     })
-    
+   console.log(array_dados)
    var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
