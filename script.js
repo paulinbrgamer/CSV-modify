@@ -281,7 +281,7 @@ function addLinha(){
         barra.style.width = ((barra.value.length+1)*10)+'px'
         barra.style.border = 'none'
         barra.style.textAlign = 'center'
-        barra.value = ' '
+        barra.value = '      '
         barra.classList.add('entrada')
         td.appendChild(barra)
         tr.appendChild(td)
@@ -307,7 +307,7 @@ function addColuna(){
             barra.classList.add('entrada')
             barra.style.backgroundColor = 'aquamarine'
             barra.style.fontWeight = '600'
-            barra.value = ' '
+            barra.value = '      '
             th.appendChild(barra)
             th.id = `row-${0}-cow-${numero_de_colunas+1}`
             tr.appendChild(th)
