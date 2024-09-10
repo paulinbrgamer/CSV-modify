@@ -94,7 +94,7 @@ function Csv_reader(data){
             primeira_linha = false
         }
         //condição para encontrar a virgula que separa os dados
-        if (data[fim_palavra] == ',' ){
+         if (data[fim_palavra] == ',' || data[fim_palavra] == ';'){
 
             //laço for que percorre a string até a virgula e guarda ela na variavel string
             for (inicio_palavra; inicio_palavra<fim_palavra ;inicio_palavra++){
