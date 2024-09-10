@@ -163,7 +163,7 @@ function CriarTb(table_data){
             barra.id = `cell-${table_row}-${table_collum}`
             array_cells.push(barra.id)
             if (table_data[table_row][table_collum] === undefined){
-                barra.value = ' '
+                barra.value = '      '
             }
             else{
               barra.value = table_data[table_row][table_collum]
