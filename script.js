@@ -358,9 +358,9 @@ function SalvarConteudo(){
     })
    console.log(array_dados)
    var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
-    link.download = nome_arquivo
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
+    link.download = nome_arquivo
    link.click()
 }
 
