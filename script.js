@@ -13,6 +13,7 @@ salvar.type = 'button'
 salvar.value = 'Salvar'
 salvar.style.display = 'none'
 salvar.classList.add('hov')
+salvar.style.margin = 'auto'
 salvar.onclick = SalvarConteudo
 var numero_de_colunas = 0
 var numero_de_linhas = 0
@@ -55,7 +56,7 @@ input.addEventListener('change',function(){
         div_tab.appendChild(CriarTb(array_dados))
         divmax.appendChild(div_tab)
         divmax.appendChild(div_ta2)
-        divmax.appendChild(salvar)
+        document.getElementById('header').appendChild(salvar)
         divmax.classList.add('container_tab')
         divmax.style.flexDirection = 'column'
         var add_btn = document.createElement('button')
