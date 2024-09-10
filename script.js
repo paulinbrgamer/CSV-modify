@@ -127,7 +127,13 @@ function Csv_reader(data){
         
         
    }
-   
+   linhas_totais.forEach(function(linha){
+    if (linhas_totais[0] > linha){
+        linha.push(" ")
+        
+    }
+        
+   })
     return linhas_totais
 }
 //função que cria a tabela e tem como parametro o array de linhas do CSV
@@ -222,6 +228,8 @@ window.document.addEventListener('keydown',function(event){
                     
                 }
             }
+            console.log("int1 "+ id_int[0])
+            console.log("int2 "+ id_int[1])
             //modificar no array dos dados o valor que esta
             array_dados[id_int[0]][id_int[1]] = s.value
             
@@ -255,7 +263,7 @@ function addLinha(){
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
-        array_dados[numero_de_linhas-1][col] =''
+        array_dados[numero_de_linhas-1][col] =' '
     }
 
 }
@@ -306,6 +314,7 @@ function addColuna(){
     
 }
 function SalvarConteudo(){
+    
     dados = ''
     array_dados.forEach(function(linha,index){
         linha.forEach(function(coluna,ind){
@@ -315,7 +324,6 @@ function SalvarConteudo(){
             else{
                dados = dados + coluna+',' 
             }
-            
         })
         if (index < array_dados.length-1){
             dados = dados + "\r\n"
@@ -325,7 +333,7 @@ function SalvarConteudo(){
         
         
     })
-    console.log(array_dados)
+    
    var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
