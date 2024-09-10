@@ -18,6 +18,16 @@ var numero_de_colunas = 0
 var numero_de_linhas = 0
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
+        if(document.getElementById('table') != null){
+            document.getElementById('table').remove()
+            document.getElementById('divmax').remove()
+            numero_de_colunas = 0
+            numero_de_linhas = 0
+            array_cells = []
+            nome_arquivo = ''
+            array_dados = [];
+            dados = ''
+        }
     //selecionar o primeiro arquivo e guardar na variavel
     const arquivos = this.files[0]
     nome_arquivo = this.files[0].name
@@ -35,9 +45,13 @@ input.addEventListener('change',function(){
         const div_tab = document.createElement('div')
         const div_ta2 = document.createElement('div')
         div_ta2.classList.add('container_tab')
-        
+        div_ta2.id = 'div_ta2'
+        div_ta2.style.display = 'flex'
+        div_ta2.style.width = '100%'
+        div_ta2.style.justifyContent = 'flex-start'
         div_tab.classList.add('container_tab')
         div_tab.id = 'div_tab'
+        divmax.id = 'divmax'
         div_tab.appendChild(CriarTb(array_dados))
         divmax.appendChild(div_tab)
         divmax.appendChild(div_ta2)
@@ -52,6 +66,7 @@ input.addEventListener('change',function(){
         add_btnL.classList.add('addbutton')
         add_btnL.onclick = addLinha
         add_btnL.id ='addL'
+        add_btnL.style.marginLeft = '15px'
         div_tab.appendChild(add_btn)
         div_tab.appendChild(document.createElement('br'))
         div_ta2.appendChild(add_btnL)
@@ -85,6 +100,9 @@ function Csv_reader(data){
                 string = string+data[inicio_palavra]
             }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
+            if(string.length<1){
+                string = ' '
+            }
             linhas.push(string)
             linhas_totais.push(linhas)
             linhas = []
@@ -100,6 +118,9 @@ function Csv_reader(data){
             for (inicio_palavra; inicio_palavra<fim_palavra ;inicio_palavra++){
                 
                 string = string+data[inicio_palavra]
+            }
+            if(string.length<1){
+                string = ' '
             }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo
             linhas.push(string)
@@ -118,6 +139,9 @@ function Csv_reader(data){
 
             }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
+            if(string.length<1){
+                string = ' '
+            }
             linhas.push(string)
             linhas_totais.push(linhas)
             linhas = []
@@ -133,6 +157,7 @@ function Csv_reader(data){
    }
    linhas_totais.forEach(function(linha){
     if (linhas_totais[0] > linha){
+        console.log(linha)
         linha.push(" ")
         
     }
@@ -163,7 +188,7 @@ function CriarTb(table_data){
             barra.id = `cell-${table_row}-${table_collum}`
             array_cells.push(barra.id)
             if (table_data[table_row][table_collum] === undefined){
-                barra.value = '      '
+                barra.value = ''
             }
             else{
               barra.value = table_data[table_row][table_collum]
@@ -193,13 +218,15 @@ function CriarTb(table_data){
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
             array_cells.push(barra.id)
-            if (table_data[table_row][table_collum] === undefined){
-                barra.value = ' '
+            if (table_data[table_row][table_collum] == ' '){
+                barra.value = ''
+                barra.style.width = ((barra.value.length+1)*50)+'px'
             }
             else{
               barra.value = table_data[table_row][table_collum]
+              barra.style.width = ((barra.value.length+1)*10)+'px'
             }
-            barra.style.width = ((barra.value.length+1)*10)+'px'
+            
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
@@ -281,12 +308,12 @@ function addLinha(){
         barra.style.width = ((barra.value.length+1)*50)+'px'
         barra.style.border = 'none'
         barra.style.textAlign = 'center'
-        barra.value = '      '
+        barra.value = ''
         barra.classList.add('entrada')
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
-        array_dados[numero_de_linhas-1][col] =' '
+        array_dados[numero_de_linhas-1][col] =''
     }
 
 }
@@ -307,7 +334,7 @@ function addColuna(){
             barra.classList.add('entrada')
             barra.style.backgroundColor = 'aquamarine'
             barra.style.fontWeight = '600'
-            barra.value = '      '
+            barra.value = ''
             th.appendChild(barra)
             th.id = `row-${0}-cow-${numero_de_colunas+1}`
             tr.appendChild(th)
@@ -322,14 +349,14 @@ function addColuna(){
             array_cells.push(barra.id)
             barra.style.width = ((barra.value.length+1)*50)+'px'
             barra.style.border = 'none'
-            barra.value = ' '
+            barra.value = ''
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
             td.appendChild(barra)
             tr.appendChild(td)
             
         }
-        array_dados[linha][numero_de_colunas] =' '
+        array_dados[linha][numero_de_colunas] =''
     }
     
     
