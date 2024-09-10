@@ -4,6 +4,7 @@ const input = document.querySelector('#dados')
 var dados;
 //variavel com todas aslinhas guardadas em arrays diferentes
 var array_dados = [];
+var nome_arquivo;
 //array que contem o id de todas as cells
 var array_cells = []
 //botao de salvar
@@ -19,6 +20,7 @@ var numero_de_linhas = 0
 input.addEventListener('change',function(){
     //selecionar o primeiro arquivo e guardar na variavel
     const arquivos = this.files[0]
+    nome_arquivo = this.files[0].name
     //instanciar um leitor para esse arquivo
     const reader = new FileReader()
 
@@ -356,9 +358,9 @@ function SalvarConteudo(){
     })
    console.log(array_dados)
    var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
+    link.download = nome_arquivo
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
-   link.download = 'Tabela_atualizada.csv'
    link.click()
 }
 
