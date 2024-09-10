@@ -278,7 +278,7 @@ function addLinha(){
         barra.type = 'text'
         barra.id = `cell-${array_dados.length-1}-${col}`
         array_cells.push(barra.id)
-        barra.style.width = ((barra.value.length+1)*10)+'px'
+        barra.style.width = ((barra.value.length+1)*50)+'px'
         barra.style.border = 'none'
         barra.style.textAlign = 'center'
         barra.value = '      '
@@ -301,7 +301,7 @@ function addColuna(){
             barra.type = 'text'
             barra.id = `cell-${0}-${numero_de_colunas}`
             array_cells.push(barra.id)
-            barra.style.width = ((barra.value.length+1)*10)+'px'
+            barra.style.width = ((barra.value.length+1)*50)+'px'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
@@ -320,7 +320,7 @@ function addColuna(){
             barra.type = 'text'
             barra.id = `cell-${linha}-${numero_de_colunas}`
             array_cells.push(barra.id)
-            barra.style.width = ((barra.value.length+1)*10)+'px'
+            barra.style.width = ((barra.value.length+1)*50)+'px'
             barra.style.border = 'none'
             barra.value = ' '
             barra.style.textAlign = 'center'
@@ -356,7 +356,6 @@ function SalvarConteudo(){
         
         
     })
-   console.log(array_dados)
    var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
