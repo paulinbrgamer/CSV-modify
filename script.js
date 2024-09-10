@@ -33,13 +33,15 @@ input.addEventListener('change',function(){
         const div_tab = document.createElement('div')
         const div_ta2 = document.createElement('div')
         div_ta2.classList.add('container_tab')
-        div_ta2.style.width = '92%'
+        
         div_tab.classList.add('container_tab')
         div_tab.id = 'div_tab'
         div_tab.appendChild(CriarTb(array_dados))
         divmax.appendChild(div_tab)
         divmax.appendChild(div_ta2)
-        document.querySelector('body').appendChild(salvar)
+        divmax.appendChild(salvar)
+        divmax.classList.add('container_tab')
+        divmax.style.flexDirection = 'column'
         var add_btn = document.createElement('button')
         add_btn.classList.add('addbutton')
         add_btn.onclick = addColuna
