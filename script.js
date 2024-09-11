@@ -303,7 +303,9 @@ function addLinha(){
     var tb = document.getElementById('table')
     tr.id = `tr${numero_de_linhas-1}`
     array_dados.push([])
-    for (var col = 0;col <=numero_de_colunas;col++){
+    console.log(array_dados)
+    console.log(numero_de_colunas)
+    for (var col = 0;col <numero_de_colunas;col++){
         var td = document.createElement('td')
         var barra = document.createElement('input')
         barra.type = 'text'
