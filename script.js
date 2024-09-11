@@ -99,16 +99,11 @@ function Csv_reader(data){
         if (data[fim_palavra] === '\r'){
 
             //laço for que percorre a string até a virgula e guarda ela na variavel string
-            for (inicio_palavra; inicio_palavra<fim_palavra;inicio_palavra++){
-                
-                string = string+data[inicio_palavra]
-            }
+            inicio_palavra = fim_palavra-1
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
-            if(string.length<1){
-                string = ' '
-            }
-            linhas.push(string)
-            linhas_totais.push(linhas)
+            
+            console.log("linhas "+ linhas)
+            
             linhas = []
             string = ''
             //pular o \r e o \n por isso numero é dois
@@ -329,6 +324,8 @@ function addLinha(){
 function addColuna(){
     salvar.style.display = 'block'
     numero_de_colunas++
+    console.log(array_dados)
+    console.log(numero_de_colunas)
     for (var linha = 0; linha< numero_de_linhas;linha++){
         if (linha==0){
             var tr = document.getElementById(`tr${linha}`) 
@@ -367,7 +364,7 @@ function addColuna(){
             tr.appendChild(td)
             
         }
-        array_dados[linha][numero_de_colunas] =''
+        array_dados[linha][numero_de_colunas-1] =''
     }
     
     mudarHD()
