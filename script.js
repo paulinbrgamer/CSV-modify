@@ -16,6 +16,7 @@ salvar.classList.add('hov')
 salvar.style.margin = 'auto'
 salvar.onclick = SalvarConteudo
 var numero_de_colunas = 0
+
 var numero_de_linhas = 0
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
@@ -76,7 +77,9 @@ input.addEventListener('change',function(){
         div_tab.style.margin = '0px'
         div_tab.style.padding = '0px'
         body.appendChild(divmax)
-        
+        mudarHD()
+        mudarL()
+        console.log(array_dados)
     })
     //ler os dados como texto
     reader.readAsText(arquivos)
@@ -227,7 +230,7 @@ function CriarTb(table_data){
               barra.value = table_data[table_row][table_collum]
               barra.style.width = ((barra.value.length+1)*10)+'px'
             }
-            
+            barra.style.backgroundColor = 'transparent'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
@@ -310,11 +313,14 @@ function addLinha(){
         barra.style.border = 'none'
         barra.style.textAlign = 'center'
         barra.value = ''
+        barra.style.backgroundColor = 'transparent'
         barra.classList.add('entrada')
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
         array_dados[numero_de_linhas-1][col] =''
+        mudarL()
+        window.scrollTo(0,document.body.scrollWidth);
     }
 
 }
@@ -333,12 +339,13 @@ function addColuna(){
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
-            barra.style.backgroundColor = 'aquamarine'
+            barra.style.backgroundColor = 'transparent'
             barra.style.fontWeight = '600'
             barra.value = ''
             th.appendChild(barra)
             th.id = `row-${0}-cow-${numero_de_colunas+1}`
             tr.appendChild(th)
+            window.scrollTo(document.body.scrollWidth, window.scrollY);
         }
         else{
             
@@ -351,6 +358,7 @@ function addColuna(){
             barra.style.width = ((barra.value.length+1)*50)+'px'
             barra.style.border = 'none'
             barra.value = ''
+            barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
             td.appendChild(barra)
@@ -360,8 +368,8 @@ function addColuna(){
         array_dados[linha][numero_de_colunas] =''
     }
     
-    
-   
+    mudarHD()
+    mudarL()
     
 }
 function SalvarConteudo(){
@@ -391,3 +399,13 @@ function SalvarConteudo(){
    link.click()
 }
 
+function mudarHD(){
+        document.querySelectorAll('th').forEach(function(cor){
+            cor.style.backgroundColor = document.getElementById('hd_color').value
+        })
+}
+function mudarL(){
+    document.querySelectorAll('td').forEach(function(cor){
+        cor.style.backgroundColor = document.getElementById('l_color').value
+    })
+}

@@ -31,13 +31,18 @@
             width: 200px;
          
         }
+        html{
+            
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            overflow-x: scroll;
+        }
         body{
-
-            height: 95vh;
+            margin: auto;
             display: flex;
             align-items: center;
             flex-direction: column;
-            
         }
         *{
             
@@ -47,7 +52,6 @@
             padding: 10px;
         }
         table{
-            
             margin: 30px;
             border-collapse: collapse;
         }
@@ -59,7 +63,6 @@
            
         }
         th{
-           background-color: aquamarine;
             text-align: center;
             border: 1px solid;
 
@@ -93,12 +96,28 @@
         white-space: nowrap;
         border: none;
     }
+
     </style>
 </head>
 <body>
-    <div id="header">
-        <h1 style=" font-size: 14pt; border-bottom: 5px solid rgb(0, 238, 255);">Selecione um arquivo CSV para tabelar</h1>
-    <input  type="file" name="arquivo" id="dados">
+    <div id="header" style="background-color: rgb(217, 242, 245); width: 400px; border-radius: 6px; display: flex; flex-direction:column;">
+        <div style="padding: 0px; display: flex; flex-direction: column; align-items: center;">
+            <h1 style=" font-size: 14pt; border-bottom: 5px solid rgb(0, 238, 255); border-radius: 6px;">Selecione um arquivo CSV para tabelar</h1>
+    <input  type="file" name="arquivo" id="dados" style="margin: 10px; padding: 0px; width: 300px;">
+        </div>
+        
+    
+   <div style="display: flex; flex-direction: column; align-items: end;padding: 5; margin: 0px;">
+    <div style="margin: 5px; padding: 2px; background-color: rgb(247, 255, 254); padding: 5px; border-radius: 10px;">
+        <label for="hd_color" style="font-weight: 400;">Cabeçalho</label>
+    <input style="padding: 2px; background-color: transparent; border-radius: 5px;" type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
+    </div>
+    <div style="margin: 5px; padding: 2px; background-color: rgb(247, 255, 254); padding: 5px; border-radius: 10px;">
+        <label for="hd_color">Linhas</label>
+    <input style="padding: 2px; background-color: transparent; border-radius: 5px;" type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
+    </div>
+    
+   </div>
     <script src="script.js"></script>
     </div>
     
