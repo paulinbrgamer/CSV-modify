@@ -14,7 +14,9 @@ salvar.value = 'Salvar'
 salvar.style.display = 'none'
 salvar.classList.add('hov')
 salvar.style.margin = 'auto'
+salvar.style.marginTop = '20px'
 salvar.onclick = SalvarConteudo
+salvar.id = 'save'
 var numero_de_colunas = 0
 
 var numero_de_linhas = 0
@@ -33,6 +35,7 @@ input.addEventListener('change',function(){
     //selecionar o primeiro arquivo e guardar na variavel
     const arquivos = this.files[0]
     nome_arquivo = this.files[0].name
+    document.getElementById('arquivo_nome').innerText = nome_arquivo
     //instanciar um leitor para esse arquivo
     const reader = new FileReader()
 
@@ -42,6 +45,7 @@ input.addEventListener('change',function(){
         //guardar a leitura desse arquivo na variavel string
         dados = reader.result
         //chamar função e passar a variavel string como parametro para que os dados retornem como um array
+        console.log(dados)
         array_dados = Csv_reader(dados)
         const body = document.querySelector("body")
         const divmax = document.createElement('div')
@@ -203,7 +207,12 @@ function CriarTb(table_data){
             else{
               barra.value = table_data[table_row][table_collum]
             }
-            barra.style.width = ((barra.value.length+1)*10)+'px'
+            if (barra.value.length ==0){
+                barra.style.width = ((barra.value.length+5)*15)+'px'
+            }
+            else{
+                barra.style.width = ((barra.value.length+1)*15)+'px'
+            }
             barra.style.border = 'none'
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
@@ -230,12 +239,17 @@ function CriarTb(table_data){
             array_cells.push(barra.id)
             if (table_data[table_row][table_collum] == ' '){
                 barra.value = ''
-                barra.style.width = ((barra.value.length+1)*50)+'px'
             }
             else{
               barra.value = table_data[table_row][table_collum]
-              barra.style.width = ((barra.value.length+1)*10)+'px'
             }
+            if (barra.value.length ==0){
+                barra.style.width = ((barra.value.length+5)*15)+'px'
+            }
+            else{
+                barra.style.width = ((barra.value.length+1)*15)+'px'
+            }
+            
             barra.style.backgroundColor = 'transparent'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
@@ -288,10 +302,15 @@ window.document.addEventListener('keydown',function(event){
                     int2 += v
                 }
             })
-            console.log(array_dados)
+            if (int2 == array_dados[int1].length){
+                array_dados[int1][int2-1] = s.value
+            }
+            else{
+                array_dados[int1][int2] = s.value
+            }
             //modificar no array dos dados o valor que esta
-            array_dados[int1][int2] = s.value
             
+            console.log(array_dados)
             console.log('tipe ')
             console.log("int1 = "+int1)
             console.log("int2 = "+int2)
@@ -320,12 +339,17 @@ function addLinha(){
         barra.type = 'text'
         barra.id = `cell-${array_dados.length-1}-${col}`
         array_cells.push(barra.id)
-        barra.style.width = ((barra.value.length+1)*50)+'px'
         barra.style.border = 'none'
         barra.style.textAlign = 'center'
         barra.value = ''
         barra.style.backgroundColor = 'transparent'
         barra.classList.add('entrada')
+        if (barra.value.length ==0){
+            barra.style.width = ((barra.value.length+5)*15)+'px'
+        }
+        else{
+            barra.style.width = ((barra.value.length+1)*15)+'px'
+        }
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
@@ -347,17 +371,22 @@ function addColuna(){
             var th = document.createElement('th')
             var barra = document.createElement('input')
             barra.type = 'text'
-            barra.id = `cell-${0}-${numero_de_colunas}`
+            barra.id = `cell-${0}-${numero_de_colunas-1}`
             array_cells.push(barra.id)
-            barra.style.width = ((barra.value.length+1)*50)+'px'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
             barra.style.backgroundColor = 'transparent'
             barra.style.fontWeight = '600'
+            if (barra.value.length ==0){
+                barra.style.width = ((barra.value.length+5)*15)+'px'
+            }
+            else{
+                barra.style.width = ((barra.value.length+1)*15)+'px'
+            }
             barra.value = ''
             th.appendChild(barra)
-            th.id = `row-${0}-cow-${numero_de_colunas+1}`
+            th.id = `row-${0}-cow-${numero_de_colunas}`
             tr.appendChild(th)
             window.scrollTo(document.body.scrollWidth, window.scrollY);
         }
@@ -369,12 +398,17 @@ function addColuna(){
             barra.type = 'text'
             barra.id = `cell-${linha}-${numero_de_colunas-1}`
             array_cells.push(barra.id)
-            barra.style.width = ((barra.value.length+1)*50)+'px'
             barra.style.border = 'none'
             barra.value = ''
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
+            if (barra.value.length ==0){
+                barra.style.width = ((barra.value.length+5)*15)+'px'
+            }
+            else{
+                barra.style.width = ((barra.value.length+1)*15)+'px'
+            }
             td.appendChild(barra)
             tr.appendChild(td)
             
@@ -387,7 +421,7 @@ function addColuna(){
     
 }
 function SalvarConteudo(){
-    
+    document.getElementById('save').style.display = 'none'
     dados = ''
     array_dados.forEach(function(linha,index){
         linha.forEach(function(coluna,ind){
@@ -408,7 +442,7 @@ function SalvarConteudo(){
     })
     console.log("string salva- \n"+dados)
     console.log(array_dados)
-   var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
+   var arquivo = new Blob([dados],{ type: 'text/csv charset=utf-8'})
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
     link.download = nome_arquivo
@@ -424,4 +458,75 @@ function mudarL(){
     document.querySelectorAll('td').forEach(function(cor){
         cor.style.backgroundColor = document.getElementById('l_color').value
     })
+}
+function NovoCSV(){
+    //apagar arquivo
+    if(document.getElementById('table') != null){
+        document.getElementById('table').remove()
+        document.getElementById('divmax').remove()
+        numero_de_colunas = 0
+        numero_de_linhas = 0
+        array_cells = []
+        nome_arquivo = ''
+        array_dados = [];
+        dados = ''
+        document.getElementById('arquivo_nome').innerText= nome_arquivo
+    }
+    
+    nome_arquivo = document.getElementById('CSV_nome').value
+    numero_de_colunas = document.getElementById('new_col').value
+    numero_de_linhas = document.getElementById('new_lin').value
+    document.getElementById('arquivo_nome').innerText = nome_arquivo
+    for(var l = 0;l<numero_de_linhas;l++){
+        array_dados.push([])
+        for(var c = 0;c<numero_de_colunas;c++){
+            array_dados[l][c] = ''
+        }
+    }
+    const body = document.querySelector("body")
+        const divmax = document.createElement('div')
+        const div_tab = document.createElement('div')
+        const div_ta2 = document.createElement('div')
+        div_ta2.classList.add('container_tab')
+        div_ta2.id = 'div_ta2'
+        div_ta2.style.display = 'flex'
+        div_ta2.style.width = '100%'
+        div_ta2.style.justifyContent = 'flex-start'
+        div_tab.classList.add('container_tab')
+        div_tab.id = 'div_tab'
+        divmax.id = 'divmax'
+        div_tab.appendChild(CriarTb(array_dados))
+        divmax.appendChild(div_tab)
+        divmax.appendChild(div_ta2)
+        document.getElementById('header').appendChild(salvar)
+        divmax.classList.add('container_tab')
+        divmax.style.flexDirection = 'column'
+        var add_btn = document.createElement('button')
+        add_btn.classList.add('addbutton')
+        add_btn.onclick = addColuna
+        add_btn.id ='add'
+        var add_btnL = document.createElement('button')
+        add_btnL.classList.add('addbutton')
+        add_btnL.onclick = addLinha
+        add_btnL.id ='addL'
+        add_btnL.style.marginLeft = '15px'
+        div_tab.appendChild(add_btn)
+        div_tab.appendChild(document.createElement('br'))
+        div_ta2.appendChild(add_btnL)
+        div_ta2.style.margin = '0px'
+        div_ta2.style.padding = '0px'
+        div_tab.style.margin = '0px'
+        div_tab.style.padding = '0px'
+        body.appendChild(divmax)
+        mudarHD()
+        mudarL()
+}
+function exibirNovo(){
+    if(document.getElementById('new_csv').style.display == 'block'){
+        document.getElementById('new_csv').style.display = 'none'
+    }
+    else{
+        document.getElementById('new_csv').style.display = 'block'
+    }
+    
 }

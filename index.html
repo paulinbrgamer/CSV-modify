@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel2</title>
+    <link rel="shortcut icon" href="icon/icone.icon.ico" type="image/htm">
+    <title>CSV-Edit</title>
     <style>
         .hov{
             border-radius: 5px;
@@ -14,7 +15,7 @@
             width: 100px;
             height: 50px;
             transition: all 0.5s ease;
-            margin-top: 15px;
+            
         }
         .hov:hover{
             box-shadow: 0px 0px 6px 5px rgba(0,0, 0, 0.2);
@@ -100,27 +101,36 @@
     </style>
 </head>
 <body>
-    <div id="header" style="background-color: rgb(217, 242, 245); width: 400px; border-radius: 6px; display: flex; flex-direction:column;">
-        <div style="padding: 0px; display: flex; flex-direction: column; align-items: center;">
-            <h1 style=" font-size: 14pt; border-bottom: 5px solid rgb(0, 238, 255); border-radius: 6px;">Selecione um arquivo CSV para tabelar</h1>
-    <input  type="file" name="arquivo" id="dados" style="margin: 10px; padding: 0px; width: 300px;">
+    <div id="header" style="background-color: rgb(217, 242, 245); width: 860px;  border-radius: 6px; display: flex; flex-direction:row; flex-wrap: wrap; align-items: center;">
+        <div style="padding-right: 15px; display: flex; border-right: 1px solid rgb(121, 157, 163); flex-direction: column; align-items: center;">
+            <h1 style=" font-size: 14pt;border-radius: 6px;">Selecione um arquivo CSV para tabelar</h1>
+    <input  type="file" name="arquivo" id="dados" style="margin: 10px; padding: 0px; width: 220px;">
         </div>
         
     
-   <div style="display: flex; flex-direction: column; align-items: end;padding: 5; margin: 0px;">
-    <div style="margin: 5px; padding: 2px; background-color: rgb(247, 255, 254); padding: 5px; border-radius: 10px;">
+   <div style="display: flex; flex-direction: row;border-right: 1px solid rgb(121, 157, 163); align-items: end; margin-right: 15px;align-self: flex-end;">
+    <div style="margin: 5px; padding: 2px;  padding: 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
         <label for="hd_color" style="font-weight: 400;">Cabeçalho</label>
-    <input style="padding: 2px; background-color: transparent; border-radius: 5px;" type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
+    <input style="padding: 2px; background-color: white; border-radius: 5px;" type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
     </div>
-    <div style="margin: 5px; padding: 2px; background-color: rgb(247, 255, 254); padding: 5px; border-radius: 10px;">
+    <div style="margin: 5px; padding: 2px; padding: 5px; border-radius: 10px;display: flex;flex-direction: column; width: 100px;align-items: center;">
         <label for="hd_color">Linhas</label>
-    <input style="padding: 2px; background-color: transparent; border-radius: 5px;" type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
+    <input style="padding: 2px; background-color: white; border-radius: 5px;" type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
     </div>
     
    </div>
+   <input id="new-tb" type="button" value="Criar Tabela" class="hov" style="width: 150px; box-shadow: none;margin:20px; " onclick="exibirNovo()">
+   <div id="new_csv" style="display: none;">
+        <label for="new_col" style="padding: 0px;">Colunas:</label>
+        <input type="number" name="n colunas" id="new_col" style="width: 50px; border-radius: 7px; border: 1px solid gray; text-align: center; background-color: rgb(250, 253, 253);" value="1" min="1">
+        <label for="new_lin" style="padding: 0px;">Linhas:</label>
+        <input type="number" name="n linhas" id="new_lin"style="width: 50px; border-radius: 7px; border: 1px solid gray; text-align: center; background-color: rgb(250, 253, 253);" value="1" min="1">
+        <input id="CSV_nome" type="text" placeholder="Nome do arquivo..." style="margin-left:20px ; box-shadow: none; width: 170px; height: 17px; border-radius: 7px; border: solid 1px gray;">
+        <button onclick="NovoCSV()" class="hov" style="margin-left:20px ; box-shadow: none; width: 90px; height: 40px;">Criar</button>
+   </div>
+</div>
+    <div><H1 id="arquivo_nome"></H1></div>
     <script src="script.js"></script>
-    </div>
-    
 
 </body>
 </html>
