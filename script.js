@@ -520,6 +520,8 @@ function NovoCSV(){
         body.appendChild(divmax)
         mudarHD()
         mudarL()
+        document.getElementById('new_csv').style.display = 'none'
+
 }
 function exibirNovo(){
     if(document.getElementById('new_csv').style.display == 'block'){
