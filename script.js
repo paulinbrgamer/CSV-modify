@@ -38,6 +38,7 @@ input.addEventListener('change',function(){
 
     //adicionar um evento ao leitor para quando o arquivo for carregado
     reader.addEventListener('load',function(){
+        
         //guardar a leitura desse arquivo na variavel string
         dados = reader.result
         //chamar função e passar a variavel string como parametro para que os dados retornem como um array
@@ -80,6 +81,8 @@ input.addEventListener('change',function(){
         mudarHD()
         mudarL()
         console.log(array_dados)
+        console.log(numero_de_colunas)
+        
     })
     //ler os dados como texto
     reader.readAsText(arquivos)
@@ -114,6 +117,7 @@ function Csv_reader(data){
             //pular o \r e o \n por isso numero é dois
             inicio_palavra+= 2
             primeira_linha = false
+            numero_de_linhas++
         }
         //condição para encontrar a virgula que separa os dados
          if (data[fim_palavra] == ',' || data[fim_palavra] == ';'){
@@ -126,6 +130,7 @@ function Csv_reader(data){
             if(string.length<1){
                 string = ' '
             }
+            
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo
             linhas.push(string)
             string = ''
@@ -151,9 +156,11 @@ function Csv_reader(data){
             linhas = []
             string = ''
             inicio_palavra++
+            
             if (primeira_linha == true){
                 numero_de_colunas++
             }
+            numero_de_linhas++
         }
         
         
@@ -161,7 +168,7 @@ function Csv_reader(data){
    }
    linhas_totais.forEach(function(linha){
     if (linhas_totais[0] > linha){
-        console.log(linha)
+       
         linha.push(" ")
         
     }
@@ -240,7 +247,7 @@ function CriarTb(table_data){
             
         }
        } 
-       numero_de_linhas++ 
+       
     }
     
     return table
@@ -320,6 +327,7 @@ function addLinha(){
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
+        console.log(col)
         array_dados[numero_de_linhas-1][col] =''
         mudarL()
         window.scrollTo(0,document.body.scrollWidth);
