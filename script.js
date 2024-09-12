@@ -81,7 +81,7 @@ input.addEventListener('change',function(){
         mudarHD()
         mudarL()
         console.log(array_dados)
-        console.log(numero_de_colunas)
+        console.log("numero de col "+numero_de_colunas)
         
     })
     //ler os dados como texto
@@ -137,8 +137,8 @@ function Csv_reader(data){
             inicio_palavra++
             if (primeira_linha == true){
                 numero_de_colunas++
+                
             }
-            
         }
         //condição que identifica se está na ultima lina e guarda o ultimo valor por conta de nao haver virgula
         if (typeof dados[fim_palavra] == "undefined"){
@@ -149,27 +149,26 @@ function Csv_reader(data){
             }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
             if(string.length<1){
-                string = ' '
+                string = ''
             }
             linhas.push(string)
             linhas_totais.push(linhas)
             linhas = []
             string = ''
             inicio_palavra++
-            
-            if (primeira_linha == true){
-                numero_de_colunas++
-            }
+            numero_de_colunas++
             numero_de_linhas++
         }
         
         
         
    }
+   
    linhas_totais.forEach(function(linha){
-    if (linhas_totais[0] > linha){
-       
-        linha.push(" ")
+    while (linhas_totais[0].length > linha.length){
+        linha.push("")
+        
+        
         
     }
         
@@ -289,11 +288,12 @@ window.document.addEventListener('keydown',function(event){
                     int2 += v
                 }
             })
-            console.log("int1 "+ int1)
-            console.log("int2 "+ int2)
             //modificar no array dos dados o valor que esta
-            array_dados[int1][int2] = s.value
-            
+            array_dados[int1][int2-1] = s.value
+            console.log('tipe ')
+            console.log("int1 = "+int1)
+            console.log("int2 = "+int2)
+            console.log(array_dados)
            })
            
         }
@@ -310,8 +310,8 @@ function addLinha(){
     var tb = document.getElementById('table')
     tr.id = `tr${numero_de_linhas-1}`
     array_dados.push([])
+    console.log("linha Update ")
     console.log(array_dados)
-    console.log("numero de colunas "+numero_de_colunas)
     for (var col = 0;col <numero_de_colunas;col++){
         var td = document.createElement('td')
         var barra = document.createElement('input')
@@ -327,7 +327,6 @@ function addLinha(){
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
-        console.log(col)
         array_dados[numero_de_linhas-1][col] =''
         mudarL()
         window.scrollTo(0,document.body.scrollWidth);
@@ -337,8 +336,9 @@ function addLinha(){
 function addColuna(){
     salvar.style.display = 'block'
     numero_de_colunas++
+    console.log("Col Update ")
     console.log(array_dados)
-    console.log(numero_de_colunas)
+    
     for (var linha = 0; linha< numero_de_linhas;linha++){
         if (linha==0){
             var tr = document.getElementById(`tr${linha}`) 
@@ -365,7 +365,7 @@ function addColuna(){
             var td = document.createElement('td')
             var barra = document.createElement('input')
             barra.type = 'text'
-            barra.id = `cell-${linha}-${numero_de_colunas}`
+            barra.id = `cell-${linha}-${numero_de_colunas-1}`
             array_cells.push(barra.id)
             barra.style.width = ((barra.value.length+1)*50)+'px'
             barra.style.border = 'none'
@@ -389,7 +389,7 @@ function SalvarConteudo(){
     dados = ''
     array_dados.forEach(function(linha,index){
         linha.forEach(function(coluna,ind){
-            if (ind == numero_de_colunas){
+            if (ind == linha.length-1){
                 dados = dados + coluna
             }
             else{
@@ -404,6 +404,8 @@ function SalvarConteudo(){
         
         
     })
+    console.log("string salva- \n"+dados)
+    console.log(array_dados)
    var arquivo = new Blob([dados],{ type: 'text/plain charset=utf-8'})
    const link = document.createElement('a')
    link.href = URL.createObjectURL(arquivo)
