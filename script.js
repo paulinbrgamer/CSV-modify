@@ -99,11 +99,16 @@ function Csv_reader(data){
         if (data[fim_palavra] === '\r'){
 
             //laço for que percorre a string até a virgula e guarda ela na variavel string
-            inicio_palavra = fim_palavra-1
+            for (inicio_palavra; inicio_palavra<fim_palavra;inicio_palavra++){
+                
+                string = string+data[inicio_palavra]
+            }
             //guardando a variavel string em um array, linpando a variavel string e selecionando o final do dado como inicio do proximo e colocando em um array separado por linhas
-            
-            console.log("linhas "+ linhas)
-            
+            if(string.length<1){
+                string = ' '
+            }
+            linhas.push(string)
+            linhas_totais.push(linhas)
             linhas = []
             string = ''
             //pular o \r e o \n por isso numero é dois
@@ -299,7 +304,7 @@ function addLinha(){
     tr.id = `tr${numero_de_linhas-1}`
     array_dados.push([])
     console.log(array_dados)
-    console.log(numero_de_colunas)
+    console.log("numero de colunas "+numero_de_colunas)
     for (var col = 0;col <numero_de_colunas;col++){
         var td = document.createElement('td')
         var barra = document.createElement('input')
