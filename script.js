@@ -288,12 +288,14 @@ window.document.addEventListener('keydown',function(event){
                     int2 += v
                 }
             })
+            console.log(array_dados)
             //modificar no array dos dados o valor que esta
-            array_dados[int1][int2-1] = s.value
+            array_dados[int1][int2] = s.value
+            
             console.log('tipe ')
             console.log("int1 = "+int1)
             console.log("int2 = "+int2)
-            console.log(array_dados)
+            
            })
            
         }
