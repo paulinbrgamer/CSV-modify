@@ -521,6 +521,7 @@ function NovoCSV(){
         mudarHD()
         mudarL()
         document.getElementById('new_csv').style.display = 'none'
+        salvar.style.display = 'block'
 
 }
 function exibirNovo(){
