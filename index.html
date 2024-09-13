@@ -34,6 +34,7 @@
          
         }
         html{
+            
             padding: 0px;
             display: flex;
             align-items: start;
@@ -41,7 +42,7 @@
             overflow-x: scroll;
         }
         body{
-            width: 100%;
+            
             padding: 0px;
             margin: auto;
             display: flex;
@@ -106,10 +107,11 @@
         border: 1px solid rgb(145, 143, 143);
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         align-items: center;
         color: black;
         padding: 10px;
-        width: 100%;
+        
         
     
 
@@ -137,7 +139,6 @@
         padding: 20px;
         margin-left: 10px;
         margin-right: 10px;
-        
         background-color: white;
         background-image: url(icon/cabecalho.png);
         background-size: cover;
@@ -169,6 +170,16 @@
         align-items: center;
         justify-content: space-around;
     }
+    .new_input{
+        width: 55px;
+        border-radius: 4px;
+        border: solid 1px gray;
+    }
+    #new_csv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     </style>
 </head>
 <body>
@@ -177,18 +188,24 @@
         <div  ><label id="label-input" for="dados">Carregar Arquivo</label> <input  type="file" name="arquivo" id="dados" >
             <input id="new-tb" type="button" value="Criar Tabela" class="hov" onclick="exibirNovo()">
         </div>
+        <div><input  type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
+        <input type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()"></div>
         
-        <input  type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
-        <input type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
 
         </div>
         <div id="new_csv" >
-            <label for="new_col" >Colunas:</label>
-            <input type="number" name="n colunas" id="new_col" value="1" min="1">
-            <label for="new_lin">Linhas:</label>
-            <input type="number" name="n linhas" id="new_lin" value="1" min="1">
-            <input id="CSV_nome" type="text" placeholder="Nome do arquivo...">
+            <div style="display: flex; justify-content: center; align-items: center;">
+            <div style="padding: 0px; margin: 5px;"><label for="new_col" >Colunas:</label>
+                <input class="new_input" type="number" name="n colunas" id="new_col" value="1" min="1"></div>
+            <div style="margin: 5px; padding: 0px;"><label for="new_lin">Linhas:</label>
+                <input class="new_input" type="number" name="n linhas" id="new_lin" value="1" min="1"></div>
+            
+            </div>
+            <div style="padding: 0px;">
+                <input style="border-radius: 4px; border: solid 1px gray;" id="CSV_nome" type="text" placeholder="Nome do arquivo...">
             <button onclick="NovoCSV()" class="hov" >Criar</button>
+            </div>
+            
         </div>
 
     </header>
