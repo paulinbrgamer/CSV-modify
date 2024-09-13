@@ -200,7 +200,7 @@ function CriarTb(table_data){
               barra.value = table_data[table_row][table_collum]
             }
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
+                barra.style.width = ((barra.value.length+4)*15)+'px'
             }
             else{
                 barra.style.width = ((barra.value.length+1)*10)+'px'
@@ -236,7 +236,7 @@ function CriarTb(table_data){
               barra.value = table_data[table_row][table_collum]
             }
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
+                barra.style.width = ((barra.value.length+4)*15)+'px'
             }
             else{
                 barra.style.width = ((barra.value.length+1)*10)+'px'
@@ -337,7 +337,7 @@ function addLinha(){
         barra.style.backgroundColor = 'transparent'
         barra.classList.add('entrada')
         if (barra.value.length ==0){
-            barra.style.width = ((barra.value.length+2)*15)+'px'
+            barra.style.width = ((barra.value.length+4)*15)+'px'
         }
         else{
             barra.style.width = ((barra.value.length+1)*10)+'px'
@@ -371,7 +371,7 @@ function addColuna(){
             barra.style.backgroundColor = 'transparent'
             barra.style.fontWeight = '600'
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
+                barra.style.width = ((barra.value.length+4)*15)+'px'
             }
             else{
                 barra.style.width = ((barra.value.length+1)*10)+'px'
@@ -396,7 +396,7 @@ function addColuna(){
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
+                barra.style.width = ((barra.value.length+4)*15)+'px'
             }
             else{
                 barra.style.width = ((barra.value.length+1)*10)+'px'
