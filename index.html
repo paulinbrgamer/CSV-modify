@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="icon/icone.icon.ico" type="image/htm">
-    <title>CSV-Edit</title>
+    <title>Editor-CSV</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         .hov{
@@ -14,13 +14,13 @@
             border: none;
             height: 200px;
             background-color: transparent;
-            width: 100px;
-            height: 40px;
+            width: 90px;
+            height: 30px;
             transition: all 0.5s ease;
             
         }
         .hov:hover{
-            background-color: rgb(231, 231, 231);
+            background-color: rgb(215, 223, 223);
             cursor: pointer;
         }
         .entrada{
@@ -34,19 +34,18 @@
          
         }
         html{
-            
+          
             padding: 0px;
             display: flex;
             align-items: start;
             justify-content: start;
-            overflow-x: scroll;
+            
         }
         body{
-            
+            width: 100vw;
+            height: 95vh;
             padding: 0px;
-            margin: auto;
             display: flex;
-            align-items: center;
             flex-direction: column;
         }
         *{
@@ -54,7 +53,7 @@
             font-family: Roboto;
             font-weight: 500;
             font-style: normal;
-            font-size: 12pt;
+            font-size: 11pt;
             margin: 0;
             padding: 10px;
         }
@@ -78,6 +77,10 @@
             display: flex;
             justify-content: center;
             align-items: baseline;
+            
+        }
+        ::-webkit-scrollbar{
+            width: 1;
         }
     .addbutton > img{
         padding: 0;
@@ -104,13 +107,14 @@
         border: none;
     }
     #header{
-        border: 1px solid rgb(145, 143, 143);
-        display: flex;
-        justify-content: center;
         flex-wrap: wrap;
+        border-bottom: 1px solid rgb(145, 143, 143);
+        display: flex;
+        justify-content: space-between;
         align-items: center;
         color: black;
-        padding: 10px;
+        padding-bottom: 4px;
+        
         
         
     
@@ -120,12 +124,17 @@
         display: none;  
     }
     #label-input{
+        
+        line-height: 15px;
+        
+        text-align: center;
         transition: all 0.5s ease;
         border-radius: 5px;
         
     }
     #label-input:hover{
-        background-color: rgb(231, 231, 231);
+        
+        background-color: rgb(215, 223, 223);
         cursor: pointer;
     }
     #hd_color:hover{
@@ -134,11 +143,11 @@
     }
     #hd_color{
         border: none;
-        width: 15px;
-        height: 15px;
-        padding: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
+        width: 12px;
+        height: 12px;
+        padding: 12px;
+        margin-left: 5px;
+        margin-right: 5px;
         background-color: white;
         background-image: url(icon/cabecalho.png);
         background-size: cover;
@@ -147,12 +156,12 @@
         transition: all 0.3s ease;
     }
     #l_color{
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
         border: none;
-        width: 20px;
-        height: 20px;
-        padding: 20px;
+        width: 12px;
+        height: 12px;
+        padding: 12px;
         background-color: white;
         background-image: url(icon/planilha.png);
         background-size: cover;
@@ -164,52 +173,104 @@
         cursor: pointer;
         transform: scale(1.1);
     }
+    #container-botoes{
+        display: flex;
+        
+        padding: 0px;
+    }
+    #container-arquivo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px;
+    }
     #opçoes{
+        padding: 0px;
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-around;
+        align-items:center;
+        justify-content: flex-start;
     }
     .new_input{
-        width: 55px;
+        height: 15px;
+        width: 35px;
+        padding: 8px;
         border-radius: 4px;
         border: solid 1px gray;
     }
     #new_csv{
+        margin-left: 15px;
         display: flex;
-        flex-direction: column;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
         align-items: center;
+        padding: 0px;
+        border-left: 1px solid gray;
+        border-right:1px solid gray;
+    }
+    #CSV_nome{
+        font-weight: 400;
+        padding: 8px;
+        border-radius: 4px;
+        border:  1px solid gray;
+        height: 15px;
+        width: 135px;
+        margin-left: 15px;
+        margin-right: 5px;
+    }
+    #Screen_table{
+        width: 100vw;
+        height: 95vh;
+        padding: 0px;
+        margin: 0px;
+        overflow: scroll;
+        background-color: #f5f5f5;
+    }
+    @media (max-width:600px){
+        #new_csv{
+        margin-left: 15px;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 0px;
+        border-left: 1px solid rgb(255, 0, 0);
+        border-right:1px solid gray;
+    }
     }
     </style>
 </head>
 <body>
     <header id="header">
         <div id="opçoes">
-        <div  ><label id="label-input" for="dados">Carregar Arquivo</label> <input  type="file" name="arquivo" id="dados" >
-            <input id="new-tb" type="button" value="Criar Tabela" class="hov" onclick="exibirNovo()">
-        </div>
-        <div><input  type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
-        <input type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()"></div>
-        
-
-        </div>
-        <div id="new_csv" >
-            <div style="display: flex; justify-content: center; align-items: center;">
-            <div style="padding: 0px; margin: 5px;"><label for="new_col" >Colunas:</label>
-                <input class="new_input" type="number" name="n colunas" id="new_col" value="1" min="1"></div>
-            <div style="margin: 5px; padding: 0px;"><label for="new_lin">Linhas:</label>
-                <input class="new_input" type="number" name="n linhas" id="new_lin" value="1" min="1"></div>
-            
+            <div  id="container-arquivo">
+                <label  id="label-input" for="dados">Carregar Arquivo</label> <input  type="file" name="arquivo" id="dados" >
+                <input id="save" type="button" value="Salvar" class="hov" style="" onclick="SalvarConteudo()">
+                <input id="new-tb" type="button" value="Criar Tabela" class="hov" onclick="exibirNovo()">
             </div>
-            <div style="padding: 0px;">
-                <input style="border-radius: 4px; border: solid 1px gray;" id="CSV_nome" type="text" placeholder="Nome do arquivo...">
-            <button onclick="NovoCSV()" class="hov" >Criar</button>
-            </div>
-            
+            <div id="new_csv" style="display: none;">
+                <div style="padding: 0px;">
+                    <label for="new_col" >Colunas:</label>
+                    <input class="new_input" type="number" name="n colunas" id="new_col" value="1" min="1">
+                    <label for="new_lin">Linhas:</label>
+                    <input class="new_input" type="number" name="n linhas" id="new_lin" value="1" min="1">
+                </div>
+                <div  style="padding: 0px;">
+                    <input id="CSV_nome" type="text" placeholder="Nome do arquivo...">
+                    <button onclick="NovoCSV()" class="hov" >Finalizar</button>
+                </div>
+            </div>  
         </div>
-
+        <div></div>
+        <div id="container-botoes">
+            <input  type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
+            <input type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
+        </div>
     </header>
-    <div><H1 id="arquivo_nome"></H1></div>
+    <div style="text-align: center;padding: 0px;">
+        <H1 id="arquivo_nome"></H1>
+    </div>
+    <div id="Screen_table"></div>
     <script src="script.js"></script>
 
 </body>

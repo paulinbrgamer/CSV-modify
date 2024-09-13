@@ -8,13 +8,8 @@ var nome_arquivo;
 //array que contem o id de todas as cells
 var array_cells = []
 //botao de salvar
-var salvar = document.createElement('input')
-salvar.type = 'button'
-salvar.value = 'Salvar'
-salvar.style.display = 'none'
-salvar.classList.add('hov')
-salvar.onclick = SalvarConteudo
-salvar.id = 'save'
+var salvar = document.getElementById('save')
+
 var numero_de_colunas = 0
 
 var numero_de_linhas = 0
@@ -60,7 +55,6 @@ input.addEventListener('change',function(){
         div_tab.appendChild(CriarTb(array_dados))
         divmax.appendChild(div_tab)
         divmax.appendChild(div_ta2)
-        document.getElementById('header').appendChild(salvar)
         divmax.classList.add('container_tab')
         divmax.style.flexDirection = 'column'
         var add_btn = document.createElement('button')
@@ -79,7 +73,7 @@ input.addEventListener('change',function(){
         div_ta2.style.padding = '0px'
         div_tab.style.margin = '0px'
         div_tab.style.padding = '0px'
-        body.appendChild(divmax)
+        document.getElementById("Screen_table").appendChild(divmax)
         mudarHD()
         mudarL()
         console.log(array_dados)
@@ -206,10 +200,10 @@ function CriarTb(table_data){
               barra.value = table_data[table_row][table_collum]
             }
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+5)*15)+'px'
+                barra.style.width = ((barra.value.length+2)*15)+'px'
             }
             else{
-                barra.style.width = ((barra.value.length+1)*15)+'px'
+                barra.style.width = ((barra.value.length+1)*10)+'px'
             }
             barra.style.border = 'none'
             barra.style.backgroundColor = 'transparent'
@@ -242,10 +236,10 @@ function CriarTb(table_data){
               barra.value = table_data[table_row][table_collum]
             }
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+5)*15)+'px'
+                barra.style.width = ((barra.value.length+2)*15)+'px'
             }
             else{
-                barra.style.width = ((barra.value.length+1)*15)+'px'
+                barra.style.width = ((barra.value.length+1)*10)+'px'
             }
             
             barra.style.backgroundColor = 'transparent'
@@ -343,17 +337,17 @@ function addLinha(){
         barra.style.backgroundColor = 'transparent'
         barra.classList.add('entrada')
         if (barra.value.length ==0){
-            barra.style.width = ((barra.value.length+5)*15)+'px'
+            barra.style.width = ((barra.value.length+2)*15)+'px'
         }
         else{
-            barra.style.width = ((barra.value.length+1)*15)+'px'
+            barra.style.width = ((barra.value.length+1)*10)+'px'
         }
         td.appendChild(barra)
         tr.appendChild(td)
         tb.appendChild(tr)
         array_dados[numero_de_linhas-1][col] =''
         mudarL()
-        window.scrollTo(0,document.body.scrollWidth);
+        document.getElementById('Screen_table').scrollTo(0,document.getElementById('Screen_table').scrollWidth);
     }
 
 }
@@ -377,16 +371,16 @@ function addColuna(){
             barra.style.backgroundColor = 'transparent'
             barra.style.fontWeight = '600'
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+5)*15)+'px'
+                barra.style.width = ((barra.value.length+2)*15)+'px'
             }
             else{
-                barra.style.width = ((barra.value.length+1)*15)+'px'
+                barra.style.width = ((barra.value.length+1)*10)+'px'
             }
             barra.value = ''
             th.appendChild(barra)
             th.id = `row-${0}-cow-${numero_de_colunas}`
             tr.appendChild(th)
-            window.scrollTo(document.body.scrollWidth, window.scrollY);
+            document.getElementById('Screen_table').scrollTo(document.getElementById('Screen_table').scrollWidth, window.scrollY);
         }
         else{
             
@@ -402,10 +396,10 @@ function addColuna(){
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+5)*15)+'px'
+                barra.style.width = ((barra.value.length+2)*15)+'px'
             }
             else{
-                barra.style.width = ((barra.value.length+1)*15)+'px'
+                barra.style.width = ((barra.value.length+1)*10)+'px'
             }
             td.appendChild(barra)
             tr.appendChild(td)
@@ -489,14 +483,13 @@ function NovoCSV(){
         div_ta2.id = 'div_ta2'
         div_ta2.style.display = 'flex'
         div_ta2.style.width = '100%'
-        div_ta2.style.justifyContent = 'flex-start'
+        div_ta2.style.justifyContent = 'flex-start'    
         div_tab.classList.add('container_tab')
         div_tab.id = 'div_tab'
         divmax.id = 'divmax'
         div_tab.appendChild(CriarTb(array_dados))
         divmax.appendChild(div_tab)
         divmax.appendChild(div_ta2)
-        document.getElementById('header').appendChild(salvar)
         divmax.classList.add('container_tab')
         divmax.style.flexDirection = 'column'
         var add_btn = document.createElement('button')
@@ -515,19 +508,21 @@ function NovoCSV(){
         div_ta2.style.padding = '0px'
         div_tab.style.margin = '0px'
         div_tab.style.padding = '0px'
-        body.appendChild(divmax)
+        document.getElementById("Screen_table").appendChild(divmax)
         mudarHD()
         mudarL()
         document.getElementById('new_csv').style.display = 'none'
-        salvar.style.display = 'block'
+        salvar.style.display = 'flex'
 
 }
 function exibirNovo(){
-    if(document.getElementById('new_csv').style.display == 'block'){
+    if(document.getElementById('new_csv').style.display == 'flex'){
         document.getElementById('new_csv').style.display = 'none'
+
     }
     else{
-        document.getElementById('new_csv').style.display = 'block'
+        document.getElementById('new_csv').style.display = 'flex'
+        
     }
     
 }
