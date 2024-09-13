@@ -13,8 +13,6 @@ salvar.type = 'button'
 salvar.value = 'Salvar'
 salvar.style.display = 'none'
 salvar.classList.add('hov')
-salvar.style.margin = 'auto'
-salvar.style.marginTop = '20px'
 salvar.onclick = SalvarConteudo
 salvar.id = 'save'
 var numero_de_colunas = 0

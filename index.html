@@ -6,20 +6,21 @@
     <link rel="shortcut icon" href="icon/icone.icon.ico" type="image/htm">
     <title>CSV-Edit</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
         .hov{
+            margin: 0px;
+            padding: 0px;
             border-radius: 5px;
             border: none;
-            background-color: aqua;
-            color: rgb(32, 32, 32);
-            font-weight: 600;
+            height: 200px;
+            background-color: transparent;
             width: 100px;
-            height: 50px;
+            height: 40px;
             transition: all 0.5s ease;
             
         }
         .hov:hover{
-            box-shadow: 0px 0px 6px 5px rgba(0,0, 0, 0.2);
-            transform:  scale(1.1);
+            background-color: rgb(231, 231, 231);
             cursor: pointer;
         }
         .entrada{
@@ -33,13 +34,15 @@
          
         }
         html{
-            
+            padding: 0px;
             display: flex;
             align-items: start;
             justify-content: start;
             overflow-x: scroll;
         }
         body{
+            width: 100%;
+            padding: 0px;
             margin: auto;
             display: flex;
             align-items: center;
@@ -47,7 +50,9 @@
         }
         *{
             
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Roboto;
+            font-weight: 500;
+            font-style: normal;
             font-size: 12pt;
             margin: 0;
             padding: 10px;
@@ -97,38 +102,96 @@
         white-space: nowrap;
         border: none;
     }
+    #header{
+        border: 1px solid rgb(145, 143, 143);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        padding: 10px;
+        width: 100%;
+        
+    
 
+    }
+    #dados{
+        display: none;  
+    }
+    #label-input{
+        transition: all 0.5s ease;
+        border-radius: 5px;
+        
+    }
+    #label-input:hover{
+        background-color: rgb(231, 231, 231);
+        cursor: pointer;
+    }
+    #hd_color:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+    #hd_color{
+        border: none;
+        width: 15px;
+        height: 15px;
+        padding: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        
+        background-color: white;
+        background-image: url(icon/cabecalho.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: all 0.3s ease;
+    }
+    #l_color{
+        margin-left: 10px;
+        margin-right: 10px;
+        border: none;
+        width: 20px;
+        height: 20px;
+        padding: 20px;
+        background-color: white;
+        background-image: url(icon/planilha.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: all 0.3s ease;
+    }
+    #l_color:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+    #opçoes{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+    }
     </style>
 </head>
 <body>
-    <div id="header" style="background-color: rgb(217, 242, 245); width: 860px;  border-radius: 6px; display: flex; flex-direction:row; flex-wrap: wrap; align-items: center;">
-        <div style="padding-right: 15px; display: flex; border-right: 1px solid rgb(121, 157, 163); flex-direction: column; align-items: center;">
-            <h1 style=" font-size: 14pt;border-radius: 6px;">Selecione um arquivo CSV para tabelar</h1>
-    <input  type="file" name="arquivo" id="dados" style="margin: 10px; padding: 0px; width: 220px;">
+    <header id="header">
+        <div id="opçoes">
+        <div  ><label id="label-input" for="dados">Carregar Arquivo</label> <input  type="file" name="arquivo" id="dados" >
+            <input id="new-tb" type="button" value="Criar Tabela" class="hov" onclick="exibirNovo()">
         </div>
         
-    
-   <div style="display: flex; flex-direction: row;border-right: 1px solid rgb(121, 157, 163); align-items: end; margin-right: 15px;align-self: flex-end;">
-    <div style="margin: 5px; padding: 2px;  padding: 5px; border-radius: 10px; display: flex; flex-direction: column; align-items: center;">
-        <label for="hd_color" style="font-weight: 400;">Cabeçalho</label>
-    <input style="padding: 2px; background-color: white; border-radius: 5px;" type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
-    </div>
-    <div style="margin: 5px; padding: 2px; padding: 5px; border-radius: 10px;display: flex;flex-direction: column; width: 100px;align-items: center;">
-        <label for="hd_color">Linhas</label>
-    <input style="padding: 2px; background-color: white; border-radius: 5px;" type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
-    </div>
-    
-   </div>
-   <input id="new-tb" type="button" value="Criar Tabela" class="hov" style="width: 150px; box-shadow: none;margin:20px; " onclick="exibirNovo()">
-   <div id="new_csv" style="display: none;">
-        <label for="new_col" style="padding: 0px;">Colunas:</label>
-        <input type="number" name="n colunas" id="new_col" style="width: 50px; border-radius: 7px; border: 1px solid gray; text-align: center; background-color: rgb(250, 253, 253);" value="1" min="1">
-        <label for="new_lin" style="padding: 0px;">Linhas:</label>
-        <input type="number" name="n linhas" id="new_lin"style="width: 50px; border-radius: 7px; border: 1px solid gray; text-align: center; background-color: rgb(250, 253, 253);" value="1" min="1">
-        <input id="CSV_nome" type="text" placeholder="Nome do arquivo..." style="margin-left:20px ; box-shadow: none; width: 170px; height: 17px; border-radius: 7px; border: solid 1px gray;">
-        <button onclick="NovoCSV()" class="hov" style="margin-left:20px ; box-shadow: none; width: 90px; height: 40px;">Criar</button>
-   </div>
-</div>
+        <input  type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
+        <input type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
+
+        </div>
+        <div id="new_csv" >
+            <label for="new_col" >Colunas:</label>
+            <input type="number" name="n colunas" id="new_col" value="1" min="1">
+            <label for="new_lin">Linhas:</label>
+            <input type="number" name="n linhas" id="new_lin" value="1" min="1">
+            <input id="CSV_nome" type="text" placeholder="Nome do arquivo...">
+            <button onclick="NovoCSV()" class="hov" >Criar</button>
+        </div>
+
+    </header>
     <div><H1 id="arquivo_nome"></H1></div>
     <script src="script.js"></script>
 
