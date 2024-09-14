@@ -143,9 +143,9 @@
     }
     #hd_color{
         border: none;
-        width: 12px;
-        height: 12px;
-        padding: 12px;
+        width: 20px;
+        height: 20px;
+        padding: 20px;
         margin-left: 5px;
         margin-right: 5px;
         background-color: white;
@@ -153,21 +153,18 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        transition: all 0.3s ease;
     }
     #l_color{
         margin-left: 5px;
         margin-right: 5px;
         border: none;
-        width: 12px;
-        height: 12px;
-        padding: 12px;
+        width: 20px;
+        height: 20px;
+        padding: 20px;
         background-color: white;
         background-image: url(icon/planilha.png);
         background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        transition: all 0.3s ease;
+        background-position: center center;
     }
     #l_color:hover{
         cursor: pointer;
@@ -226,17 +223,37 @@
         overflow: scroll;
         background-color: #f5f5f5;
     }
-    @media (max-width:600px){
-        #new_csv{
-        margin-left: 15px;
+    #new_data{
         display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        align-items: center;
-        padding: 0px;
-        border-left: 1px solid rgb(255, 0, 0);
-        border-right:1px solid gray;
+        flex-direction: row;
+        
     }
+    @media (max-width:904px){
+        #opçoes{
+            justify-content: center;
+        }
+    }
+    @media (max-width:615px){
+        #header{
+            justify-content: center;
+        }
+        #opçoes{
+            justify-content: center;
+        }
+        #new_data{
+            
+            flex-direction: column;
+        }
+        #new_name{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #new_csv{
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+        }
     }
     </style>
 </head>
@@ -245,17 +262,22 @@
         <div id="opçoes">
             <div  id="container-arquivo">
                 <label  id="label-input" for="dados">Carregar Arquivo</label> <input  type="file" name="arquivo" id="dados" >
-                <input id="save" type="button" value="Salvar" class="hov" style="" onclick="SalvarConteudo()">
+                
                 <input id="new-tb" type="button" value="Criar Tabela" class="hov" onclick="exibirNovo()">
             </div>
             <div id="new_csv" style="display: none;">
-                <div style="padding: 0px;">
-                    <label for="new_col" >Colunas:</label>
-                    <input class="new_input" type="number" name="n colunas" id="new_col" value="1" min="1">
-                    <label for="new_lin">Linhas:</label>
-                    <input class="new_input" type="number" name="n linhas" id="new_lin" value="1" min="1">
+                <div style="padding: 0px;" id="new_data">
+                    <div>
+                        <label for="new_col" >Colunas:</label>
+                        <input class="new_input" type="number" name="n colunas" id="new_col" value="1" min="1">
+                    </div>
+                    <div>
+                        <label for="new_lin">Linhas:</label>
+                        <input class="new_input" type="number" name="n linhas" id="new_lin" value="1" min="1">
+                    </div>
+                    
                 </div>
-                <div  style="padding: 0px;">
+                <div  style="padding: 0px;" id="new_name">
                     <input id="CSV_nome" type="text" placeholder="Nome do arquivo...">
                     <button onclick="NovoCSV()" class="hov" >Finalizar</button>
                 </div>
@@ -263,11 +285,12 @@
         </div>
         <div></div>
         <div id="container-botoes">
-            <input  type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()">
+            <input id="save" type="button" value="Salvar" class="hov" style="" onclick="SalvarConteudo()">
+            <input  type="color" name="cor_header" id="hd_color" value="#51e4e6" onchange="mudarHD()" >
             <input type="color" name="cor_header" id="l_color" value="#FFFFFF" onchange="mudarL()">
         </div>
     </header>
-    <div style="text-align: center;padding: 0px;">
+    <div style="text-align: center;padding: 0px;background-color: #f5f5f5; ">
         <H1 id="arquivo_nome"></H1>
     </div>
     <div id="Screen_table"></div>
