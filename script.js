@@ -29,6 +29,7 @@ input.addEventListener('change',function(){
     const arquivos = this.files[0]
     nome_arquivo = this.files[0].name
     document.getElementById('arquivo_nome').innerText = nome_arquivo
+    document.getElementById('arquivo_nome').style.display = 'block'
     //instanciar um leitor para esse arquivo
     const reader = new FileReader()
 
@@ -463,12 +464,14 @@ function NovoCSV(){
         array_dados = [];
         dados = ''
         document.getElementById('arquivo_nome').innerText= nome_arquivo
+        document.getElementById('arquivo_nome').style.display = 'block'
     }
     
     nome_arquivo = document.getElementById('CSV_nome').value
     numero_de_colunas = document.getElementById('new_col').value
     numero_de_linhas = document.getElementById('new_lin').value
     document.getElementById('arquivo_nome').innerText = nome_arquivo
+    document.getElementById('arquivo_nome').style.display = 'block'
     for(var l = 0;l<numero_de_linhas;l++){
         array_dados.push([])
         for(var c = 0;c<numero_de_colunas;c++){
