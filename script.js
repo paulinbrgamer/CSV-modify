@@ -9,10 +9,13 @@ var nome_arquivo;
 var array_cells = []
 //botao de salvar
 var salvar = document.getElementById('save')
-
 var numero_de_colunas = 0
-
 var numero_de_linhas = 0
+//salvar cores
+var lncor = document.getElementById('l_color')
+var hdcor = document.getElementById('hd_color')
+hdcor.value = sessionStorage.getItem('header')
+lncor.value = sessionStorage.getItem('line')
 //acionar evento quando o estado do leitor de arquivo mudar
 input.addEventListener('change',function(){
         if(document.getElementById('table') != null){
@@ -474,13 +477,17 @@ function SalvarConteudo(){
 }
 
 function mudarHD(){
-        document.querySelectorAll('th').forEach(function(cor){
-            cor.style.backgroundColor = document.getElementById('hd_color').value
-        })
+    var hdcor = document.getElementById('hd_color').value
+    sessionStorage.setItem('header',`${hdcor}`)
+    document.querySelectorAll('th').forEach(function(cor){
+        cor.style.backgroundColor = sessionStorage.getItem('header')
+    })
 }
 function mudarL(){
+    var lncor = document.getElementById('l_color').value
+    sessionStorage.setItem('line',`${lncor}`)
     document.querySelectorAll('td').forEach(function(cor){
-        cor.style.backgroundColor = document.getElementById('l_color').value
+        cor.style.backgroundColor = sessionStorage.getItem('line')
     })
 }
 function NovoCSV(){
@@ -570,3 +577,4 @@ function exibirNovo(){
     }
     
 }
+console.log(sessionStorage.getItem('header'))
