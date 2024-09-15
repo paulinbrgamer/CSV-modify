@@ -88,6 +88,7 @@ input.addEventListener('change',function(){
         document.getElementById("Screen_table").appendChild(divmax)
         mudarHD()
         mudarL()
+        Tamanho()
         console.log(array_dados)
         
     })
@@ -328,8 +329,10 @@ window.document.addEventListener('keydown',function(event){
 
 })
 function addLinha(){
+    
     salvar.style.display = 'block'
     numero_de_linhas++
+    Tamanho()
     var tr = document.createElement('tr')
     var tb = document.getElementById('table')
     tr.id = `tr${numero_de_linhas-1}`
@@ -364,8 +367,10 @@ function addLinha(){
 
 }
 function addColuna(){
+    
     salvar.style.display = 'block'
     numero_de_colunas++
+    Tamanho()
     console.log(array_dados)
     for (var linha = 0; linha< numero_de_linhas;linha++){
         if (linha==0){
@@ -424,6 +429,7 @@ function addColuna(){
     
 }
 function delColl(){
+    
     salvar.style.display = 'block'
     if(numero_de_colunas-1 >= 1){
     for (var linha = 0; linha< numero_de_linhas;linha++){
@@ -433,16 +439,19 @@ function delColl(){
         array_dados[linha].splice(numero_de_colunas-1,linha+1)
     }
     numero_de_colunas--
+    Tamanho()
     console.log(array_dados)
     }
 }
 function delLinha(){
+    
     salvar.style.display = 'block'
     if(numero_de_linhas-1 >= 1){
     var tr = document.getElementById(`tr${numero_de_linhas-1}`)
     document.getElementById('table').removeChild(tr)
     array_dados.splice(numero_de_linhas-1,numero_de_linhas-1)
     numero_de_linhas--
+    Tamanho()
     console.log(array_dados)
     }
     
@@ -475,7 +484,9 @@ function SalvarConteudo(){
     link.download = nome_arquivo
    link.click()
 }
-
+function Tamanho(){
+    document.getElementById('size').innerText = `${numero_de_colunas}x${numero_de_linhas}`
+}
 function mudarHD(){
     var hdcor = document.getElementById('hd_color').value
     sessionStorage.setItem('header',`${hdcor}`)
@@ -564,6 +575,7 @@ function NovoCSV(){
         mudarL()
         document.getElementById('new_csv').style.display = 'none'
         salvar.style.display = 'flex'
+        Tamanho()
 
 }
 function exibirNovo(){
@@ -577,4 +589,3 @@ function exibirNovo(){
     }
     
 }
-console.log(sessionStorage.getItem('header'))
