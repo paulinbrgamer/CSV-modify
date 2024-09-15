@@ -39,7 +39,6 @@ input.addEventListener('change',function(){
         //guardar a leitura desse arquivo na variavel string
         dados = reader.result
         //chamar função e passar a variavel string como parametro para que os dados retornem como um array
-        console.log(dados)
         array_dados = Csv_reader(dados)
         const body = document.querySelector("body")
         const divmax = document.createElement('div')
@@ -87,7 +86,6 @@ input.addEventListener('change',function(){
         mudarHD()
         mudarL()
         console.log(array_dados)
-        console.log("numero de col "+numero_de_colunas)
         
     })
     //ler os dados como texto
@@ -389,7 +387,6 @@ function addColuna(){
             barra.value = ''
             th.appendChild(barra)
             tr.appendChild(th)
-            console.log(th)
             document.getElementById('Screen_table').scrollTo(document.getElementById('Screen_table').scrollWidth, window.scrollY);
         }
         else{
@@ -406,7 +403,6 @@ function addColuna(){
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
-            console.log(th)
             if (barra.value.length ==0){
                 barra.style.width = ((barra.value.length+2)*15)+'px'
             }
@@ -426,30 +422,27 @@ function addColuna(){
 }
 function delColl(){
     salvar.style.display = 'block'
+    if(numero_de_colunas-1 >= 1){
     for (var linha = 0; linha< numero_de_linhas;linha++){
         var tr = document.getElementById(`tr${linha}`)
         var col = document.getElementById(`row-${linha}-col-${numero_de_colunas-1}`)
         tr.removeChild(col)
         array_dados[linha].splice(numero_de_colunas-1,linha+1)
-        console.log(`row-${linha}-col-${numero_de_colunas-1}`)
-        console.log(tr)
     }
     numero_de_colunas--
     console.log(array_dados)
-    
-
+    }
 }
 function delLinha(){
     salvar.style.display = 'block'
-    for (var linha = 0; linha< numero_de_linhas;linha++){
-        var tr = document.getElementById(`tr${numero_de_linhas-1}`)
-        var col = document.getElementById(`row-${numero_de_linhas-1}-col-${linha}`)
-        array_dados.splice(0,0)
-        tr.removeChild(col)
-        console.log(array_dados)
-    }
+    if(numero_de_linhas-1 >= 1){
+    var tr = document.getElementById(`tr${numero_de_linhas-1}`)
+    document.getElementById('table').removeChild(tr)
+    array_dados.splice(numero_de_linhas-1,numero_de_linhas-1)
     numero_de_linhas--
-
+    console.log(array_dados)
+    }
+    
 }
 function SalvarConteudo(){
     document.getElementById('save').style.display = 'none'
