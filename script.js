@@ -61,7 +61,6 @@ input.addEventListener('change',function(){
         var add_btn = document.createElement('button')
         add_btn.classList.add('addbutton')
         add_btn.onclick = addColuna
-        add_btn.id ='add'
         var add_btnL = document.createElement('button')
         add_btnL.classList.add('addbutton')
         add_btnL.onclick = addLinha
@@ -74,6 +73,16 @@ input.addEventListener('change',function(){
         div_ta2.style.padding = '0px'
         div_tab.style.margin = '0px'
         div_tab.style.padding = '0px'
+        var remo_col = document.createElement('button')
+        remo_col.classList.add('removebutton')
+        remo_col.onclick = delColl
+        remo_col.id ='remove'
+        div_tab.appendChild(remo_col)
+        var remo_lin = document.createElement('button')
+        remo_lin.classList.add('removebutton')
+        remo_lin.onclick = delLinha
+        remo_lin.id ='removel'
+        div_ta2.appendChild(remo_lin)
         document.getElementById("Screen_table").appendChild(divmax)
         mudarHD()
         mudarL()
@@ -189,7 +198,7 @@ function CriarTb(table_data){
         //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[table_row].length;table_collum++){
             var tb_th = document.createElement('th')
-            tb_th.id = `row-${table_row}-col-${table_data[0][table_collum]}`
+            tb_th.id = `row-${table_row}-col-${table_collum}`
             var barra = document.createElement('input')
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
@@ -225,7 +234,7 @@ function CriarTb(table_data){
         for (var table_collum = 0;table_collum<table_data[0].length;table_collum++){
             var tb_td = document.createElement('td')
             
-            tb_td.id = `row-${table_row}-col-${table_data[0][table_collum]}`
+            tb_td.id = `row-${table_row}-col-${table_collum}`
             var barra = document.createElement('input')
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
@@ -329,6 +338,7 @@ function addLinha(){
     for (var col = 0;col <numero_de_colunas;col++){
         var td = document.createElement('td')
         var barra = document.createElement('input')
+        td.id = `row-${numero_de_linhas-1}-col-${col}`
         barra.type = 'text'
         barra.id = `cell-${array_dados.length-1}-${col}`
         array_cells.push(barra.id)
@@ -355,14 +365,13 @@ function addLinha(){
 function addColuna(){
     salvar.style.display = 'block'
     numero_de_colunas++
-    console.log("Col Update ")
     console.log(array_dados)
-    
     for (var linha = 0; linha< numero_de_linhas;linha++){
         if (linha==0){
             var tr = document.getElementById(`tr${linha}`) 
             var th = document.createElement('th')
             var barra = document.createElement('input')
+            th.id = `row-${linha}-col-${numero_de_colunas-1}`
             barra.type = 'text'
             barra.id = `cell-${0}-${numero_de_colunas-1}`
             array_cells.push(barra.id)
@@ -379,8 +388,8 @@ function addColuna(){
             }
             barra.value = ''
             th.appendChild(barra)
-            th.id = `row-${0}-cow-${numero_de_colunas}`
             tr.appendChild(th)
+            console.log(th)
             document.getElementById('Screen_table').scrollTo(document.getElementById('Screen_table').scrollWidth, window.scrollY);
         }
         else{
@@ -388,6 +397,7 @@ function addColuna(){
             var tr = document.getElementById(`tr${linha}`) 
             var td = document.createElement('td')
             var barra = document.createElement('input')
+            td.id = `row-${linha}-col-${numero_de_colunas-1}`
             barra.type = 'text'
             barra.id = `cell-${linha}-${numero_de_colunas-1}`
             array_cells.push(barra.id)
@@ -396,6 +406,7 @@ function addColuna(){
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
+            console.log(th)
             if (barra.value.length ==0){
                 barra.style.width = ((barra.value.length+2)*15)+'px'
             }
@@ -412,6 +423,33 @@ function addColuna(){
     mudarHD()
     mudarL()
     
+}
+function delColl(){
+    salvar.style.display = 'block'
+    for (var linha = 0; linha< numero_de_linhas;linha++){
+        var tr = document.getElementById(`tr${linha}`)
+        var col = document.getElementById(`row-${linha}-col-${numero_de_colunas-1}`)
+        tr.removeChild(col)
+        array_dados[linha].splice(numero_de_colunas-1,linha+1)
+        console.log(`row-${linha}-col-${numero_de_colunas-1}`)
+        console.log(tr)
+    }
+    numero_de_colunas--
+    console.log(array_dados)
+    
+
+}
+function delLinha(){
+    salvar.style.display = 'block'
+    for (var linha = 0; linha< numero_de_linhas;linha++){
+        var tr = document.getElementById(`tr${numero_de_linhas-1}`)
+        var col = document.getElementById(`row-${numero_de_linhas-1}-col-${linha}`)
+        array_dados.splice(0,0)
+        tr.removeChild(col)
+        console.log(array_dados)
+    }
+    numero_de_linhas--
+
 }
 function SalvarConteudo(){
     document.getElementById('save').style.display = 'none'
@@ -511,6 +549,16 @@ function NovoCSV(){
         div_ta2.style.padding = '0px'
         div_tab.style.margin = '0px'
         div_tab.style.padding = '0px'
+        var remo_col = document.createElement('button')
+        remo_col.classList.add('removebutton')
+        remo_col.onclick = delColl
+        remo_col.id ='remove'
+        div_tab.appendChild(remo_col)
+        var remo_lin = document.createElement('button')
+        remo_lin.classList.add('removebutton')
+        remo_lin.onclick = delLinha
+        remo_lin.id ='removel'
+        div_ta2.appendChild(remo_lin)
         document.getElementById("Screen_table").appendChild(divmax)
         mudarHD()
         mudarL()
