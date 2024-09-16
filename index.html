@@ -26,7 +26,7 @@
         .entrada{
             font-weight: 400;
             outline-color: rgb(42, 41, 53);
-            
+            padding: 4px;
         }
         #dados{
             margin: 10px;
@@ -49,8 +49,7 @@
             flex-direction: column;
         }
         *{
-            
-            font-family: Roboto;
+            font-family:Arial, Helvetica, sans-serif;
             font-weight: 500;
             font-style: normal;
             font-size: 11pt;
@@ -69,6 +68,7 @@
            
         }
         th{
+            padding: 0px;
             text-align: center;
             border: 1px solid;
 
@@ -79,9 +79,7 @@
             align-items: baseline;
             
         }
-        ::-webkit-scrollbar{
-            width: 1;
-        }
+
     .addbutton > img{
         padding: 0;
         width: 28px;
@@ -243,11 +241,22 @@
         margin: 0px;
         overflow: scroll;
         background-color: #f5f5f5;
+        
     }
+    #Screen_table ::-webkit-scrollbar{
+            width: 1;
+        }
     #new_data{
         display: flex;
         flex-direction: row;
         
+    }
+    #div_ta2{
+
+    }
+
+    #buttons{
+        border-bottom: 1px solid gray;padding: 0px;background-color: #f5f5f5; display: flex; justify-content: space-between;align-items: center;
     }
     @media (max-width:904px){
         #opçoes{
@@ -274,6 +283,34 @@
         #new_csv{
             flex-wrap: nowrap;
             justify-content: flex-start;
+        }
+    }
+    @media print{
+        #header{
+            display: none;
+        }
+        #buttons{
+            display: none;
+        }
+        #Screen_table{
+            background-color: white;
+            overflow:visible ;
+        }
+        .addbutton{
+            display: none;
+        }
+        #remove{
+            display: none;
+        }
+        #div_ta2{
+            display: none;
+        }
+        ::-webkit-scrollbar{
+            width: 0;
+        }
+        #divmax{
+            align-items: center;
+            justify-content: center;
         }
     }
     </style>
@@ -311,7 +348,7 @@
             <input type="color" name="cor_header" id="l_color"onchange="mudarL()">
         </div>
     </header>
-    <div style="border-bottom: 1px solid gray;padding: 0px;background-color: #f5f5f5; display: flex; justify-content: space-between;align-items: center;">
+    <div id="buttons" >
         <H1 style="display: none; "  id="arquivo_nome"></H1>
         <h3 id="size" style="padding-left: 5px;"></h3>
     </div>
