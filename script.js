@@ -49,9 +49,6 @@ input.addEventListener('change',function(){
         const div_ta2 = document.createElement('div')
         div_ta2.classList.add('container_tab')
         div_ta2.id = 'div_ta2'
-        div_ta2.style.display = 'flex'
-        div_ta2.style.width = '100%'
-        div_ta2.style.justifyContent = 'flex-start'
         div_tab.classList.add('container_tab')
         div_tab.id = 'div_tab'
         divmax.id = 'divmax'
@@ -71,10 +68,6 @@ input.addEventListener('change',function(){
         div_tab.appendChild(add_btn)
         div_tab.appendChild(document.createElement('br'))
         div_ta2.appendChild(add_btnL)
-        div_ta2.style.margin = '0px'
-        div_ta2.style.padding = '0px'
-        div_tab.style.margin = '0px'
-        div_tab.style.padding = '0px'
         var remo_col = document.createElement('button')
         remo_col.classList.add('removebutton')
         remo_col.onclick = delColl
@@ -204,6 +197,7 @@ function CriarTb(table_data){
             var barra = document.createElement('input')
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
+            barra.classList.add('entrada')
             array_cells.push(barra.id)
             if (table_data[table_row][table_collum] === undefined){
                 barra.value = ''
@@ -212,7 +206,7 @@ function CriarTb(table_data){
               barra.value = table_data[table_row][table_collum]
             }
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
+                barra.style.width = ((barra.value.length+2)*10)+'px'
             }
             else{
                 barra.style.width = ((barra.value.length+1)*10)+'px'
@@ -221,8 +215,77 @@ function CriarTb(table_data){
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
             barra.style.fontWeight = '600'
+            barra.classList.add('entrada')
             tb_th.appendChild(barra)
             tb_tr.appendChild(tb_th)
+            tb_th.addEventListener('click',function(clicado){
+                var id_str = clicado.target.id
+                var id_int = []
+                for (var char = 0; char<id_str.length;char++){
+                if (!isNaN(id_str[char])){
+                id_int.push(id_str[char])
+                if (id_str[char+1] == '-'){
+                id_int.push(id_str[char+1])
+                }
+
+
+                }
+                }
+                var int1 = ''
+                var int2 = ''
+                var chave = 0
+                id_int.forEach(function(v){
+                if(v == '-'){
+                chave =1
+                }
+                if(v!= '-' && chave ==0){
+                int1 += v
+
+                }
+                if(v!= '-' && chave >0){
+                int2 += v
+                }
+                })
+
+                var bar = document.getElementById(`cell-${int1}-${int2}`)
+                bar.focus()
+            })
+            barra.addEventListener('keydown',function(event){
+                if (event.key == 'Enter'){
+                    var id_str = event.target.id
+                    var id_int = []
+                    for (var char = 0; char<id_str.length;char++){
+                        if (!isNaN(id_str[char])){
+                            id_int.push(id_str[char])
+                            if (id_str[char+1] == '-'){
+                                id_int.push(id_str[char+1])
+                            }
+                            
+                            
+                        }
+                    }
+                    var int1 = ''
+                    var int2 = ''
+                    var chave = 0
+                    id_int.forEach(function(v){
+                        if(v == '-'){
+                            chave =1
+                        }
+                        if(v!= '-' && chave ==0){
+                            int1 += v
+                            
+                        }
+                        if(v!= '-' && chave >0){
+                            int2 += v
+                        }
+                    })
+                   var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)
+                   if (Number(int1)+1 < numero_de_linhas){
+                    nextbar.focus()
+                   }
+                  
+                }
+               })
             table.appendChild(tb_tr)
             
             
@@ -235,7 +298,6 @@ function CriarTb(table_data){
         //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[0].length;table_collum++){
             var tb_td = document.createElement('td')
-            
             tb_td.id = `row-${table_row}-col-${table_collum}`
             var barra = document.createElement('input')
             barra.type = 'text'
@@ -248,18 +310,86 @@ function CriarTb(table_data){
               barra.value = table_data[table_row][table_collum]
             }
             if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
+                barra.style.width = ((barra.value.length+2)*10)+'px'
             }
             else{
-                barra.style.width = ((barra.value.length+1)*10)+'px'
+                barra.style.width = ((barra.value.length+1)*9)+'px'
             }
-            
             barra.style.backgroundColor = 'transparent'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
             tb_td.appendChild(barra)
             tb_tr.appendChild(tb_td)
+            tb_td.addEventListener('click',function(clicado){
+                var id_str = clicado.target.id
+                var id_int = []
+                for (var char = 0; char<id_str.length;char++){
+                if (!isNaN(id_str[char])){
+                id_int.push(id_str[char])
+                if (id_str[char+1] == '-'){
+                id_int.push(id_str[char+1])
+                }
+
+
+                }
+                }
+                var int1 = ''
+                var int2 = ''
+                var chave = 0
+                id_int.forEach(function(v){
+                if(v == '-'){
+                chave =1
+                }
+                if(v!= '-' && chave ==0){
+                int1 += v
+
+                }
+                if(v!= '-' && chave >0){
+                int2 += v
+                }
+                })
+                console.log("int1 = "+int1)
+                console.log("int2 = "+int2)
+                var bar = document.getElementById(`cell-${int1}-${int2}`)
+                bar.focus()
+            })
+            barra.addEventListener('keydown',function(event){
+                if (event.key == 'Enter'){
+                    var id_str = event.target.id
+                    var id_int = []
+                    for (var char = 0; char<id_str.length;char++){
+                        if (!isNaN(id_str[char])){
+                            id_int.push(id_str[char])
+                            if (id_str[char+1] == '-'){
+                                id_int.push(id_str[char+1])
+                            }
+                            
+                            
+                        }
+                    }
+                    var int1 = ''
+                    var int2 = ''
+                    var chave = 0
+                    id_int.forEach(function(v){
+                        if(v == '-'){
+                            chave =1
+                        }
+                        if(v!= '-' && chave ==0){
+                            int1 += v
+                            
+                        }
+                        if(v!= '-' && chave >0){
+                            int2 += v
+                        }
+                    })
+                   var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)
+                   
+                   if (Number(int1)+1 < numero_de_linhas){
+                    nextbar.focus()
+                   }
+                }
+               })
             table.appendChild(tb_tr)
             
         }
@@ -275,7 +405,7 @@ window.document.addEventListener('keydown',function(event){
         if (event.target.id == ids){
            var s = document.getElementById(ids)
            s.addEventListener('input',function(){
-            s.style.width = ((s.value.length+1)*10)+'px'
+            s.style.width = ((s.value.length+1)*11)+'px'
             salvar.style.display = 'block'
            
             //percorrer a string do id e retornar o id no inteiro
@@ -287,8 +417,6 @@ window.document.addEventListener('keydown',function(event){
                     if (id_str[char+1] == '-'){
                         id_int.push(id_str[char+1])
                     }
-                    
-                    
                 }
             }
             var int1 = ''
@@ -313,20 +441,9 @@ window.document.addEventListener('keydown',function(event){
                 array_dados[int1][int2] = s.value
             }
             //modificar no array dos dados o valor que esta
-            
-            console.log(array_dados)
-            console.log('tipe ')
-            console.log("int1 = "+int1)
-            console.log("int2 = "+int2)
-            
            })
-           
         }
-        
     })
-
-    
-
 })
 function addLinha(){
     
@@ -351,14 +468,78 @@ function addLinha(){
         barra.value = ''
         barra.style.backgroundColor = 'transparent'
         barra.classList.add('entrada')
-        if (barra.value.length ==0){
-            barra.style.width = ((barra.value.length+2)*15)+'px'
-        }
-        else{
-            barra.style.width = ((barra.value.length+1)*10)+'px'
-        }
+        barra.style.width = ((barra.value.length+2)*10)+'px'
         td.appendChild(barra)
         tr.appendChild(td)
+        td.addEventListener('click',function(clicado){
+            var id_str = clicado.target.id
+            var id_int = []
+            for (var char = 0; char<id_str.length;char++){
+            if (!isNaN(id_str[char])){
+            id_int.push(id_str[char])
+            if (id_str[char+1] == '-'){
+            id_int.push(id_str[char+1])
+            }
+
+
+            }
+            }
+            var int1 = ''
+            var int2 = ''
+            var chave = 0
+            id_int.forEach(function(v){
+            if(v == '-'){
+            chave =1
+            }
+            if(v!= '-' && chave ==0){
+            int1 += v
+
+            }
+            if(v!= '-' && chave >0){
+            int2 += v
+            }
+            })
+            console.log("int1 = "+int1)
+            console.log("int2 = "+int2)
+            var bar = document.getElementById(`cell-${int1}-${int2}`)
+            bar.focus()
+        })
+        barra.addEventListener('keydown',function(event){
+            if (event.key == 'Enter'){
+                var id_str = event.target.id
+                var id_int = []
+                for (var char = 0; char<id_str.length;char++){
+                    if (!isNaN(id_str[char])){
+                        id_int.push(id_str[char])
+                        if (id_str[char+1] == '-'){
+                            id_int.push(id_str[char+1])
+                        }
+                        
+                        
+                    }
+                }
+                var int1 = ''
+                var int2 = ''
+                var chave = 0
+                id_int.forEach(function(v){
+                    if(v == '-'){
+                        chave =1
+                    }
+                    if(v!= '-' && chave ==0){
+                        int1 += v
+                        
+                    }
+                    if(v!= '-' && chave >0){
+                        int2 += v
+                    }
+                })
+               var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)
+               
+               if (Number(int1)+1 < numero_de_linhas){
+                nextbar.focus()
+               }
+            }
+           })
         tb.appendChild(tr)
         array_dados[numero_de_linhas-1][col] =''
         mudarL()
@@ -386,15 +567,79 @@ function addColuna(){
             barra.classList.add('entrada')
             barra.style.backgroundColor = 'transparent'
             barra.style.fontWeight = '600'
-            if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
-            }
-            else{
-                barra.style.width = ((barra.value.length+1)*10)+'px'
-            }
+            barra.style.width = ((barra.value.length+1)*10)+'px'
             barra.value = ''
             th.appendChild(barra)
             tr.appendChild(th)
+            th.addEventListener('click',function(clicado){
+                var id_str = clicado.target.id
+                var id_int = []
+                for (var char = 0; char<id_str.length;char++){
+                if (!isNaN(id_str[char])){
+                id_int.push(id_str[char])
+                if (id_str[char+1] == '-'){
+                id_int.push(id_str[char+1])
+                }
+
+
+                }
+                }
+                var int1 = ''
+                var int2 = ''
+                var chave = 0
+                id_int.forEach(function(v){
+                if(v == '-'){
+                chave =1
+                }
+                if(v!= '-' && chave ==0){
+                int1 += v
+
+                }
+                if(v!= '-' && chave >0){
+                int2 += v
+                }
+                })
+                console.log("int1 = "+int1)
+                console.log("int2 = "+int2)
+                var bar = document.getElementById(`cell-${int1}-${int2}`)
+                bar.focus()
+            })
+            barra.addEventListener('keydown',function(event){
+                if (event.key == 'Enter'){
+                    var id_str = event.target.id
+                    var id_int = []
+                    for (var char = 0; char<id_str.length;char++){
+                        if (!isNaN(id_str[char])){
+                            id_int.push(id_str[char])
+                            if (id_str[char+1] == '-'){
+                                id_int.push(id_str[char+1])
+                            }
+                            
+                            
+                        }
+                    }
+                    var int1 = ''
+                    var int2 = ''
+                    var chave = 0
+                    id_int.forEach(function(v){
+                        if(v == '-'){
+                            chave =1
+                        }
+                        if(v!= '-' && chave ==0){
+                            int1 += v
+                            
+                        }
+                        if(v!= '-' && chave >0){
+                            int2 += v
+                        }
+                    })
+                   var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)
+                   
+                   if (Number(int1)+1 < numero_de_linhas){
+                    nextbar.focus()
+                   }
+                }
+               })
             document.getElementById('Screen_table').scrollTo(document.getElementById('Screen_table').scrollWidth, window.scrollY);
         }
         else{
@@ -411,13 +656,77 @@ function addColuna(){
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
-            if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*15)+'px'
-            }
-            else{
-                barra.style.width = ((barra.value.length+1)*10)+'px'
-            }
+            barra.style.width = ((barra.value.length+1)*10)+'px'
             td.appendChild(barra)
+            td.addEventListener('click',function(clicado){
+                var id_str = clicado.target.id
+                var id_int = []
+                for (var char = 0; char<id_str.length;char++){
+                if (!isNaN(id_str[char])){
+                id_int.push(id_str[char])
+                if (id_str[char+1] == '-'){
+                id_int.push(id_str[char+1])
+                }
+
+
+                }
+                }
+                var int1 = ''
+                var int2 = ''
+                var chave = 0
+                id_int.forEach(function(v){
+                if(v == '-'){
+                chave =1
+                }
+                if(v!= '-' && chave ==0){
+                int1 += v
+
+                }
+                if(v!= '-' && chave >0){
+                int2 += v
+                }
+                })
+                console.log("int1 = "+int1)
+                console.log("int2 = "+int2)
+                var bar = document.getElementById(`cell-${int1}-${int2}`)
+                bar.focus()
+            })
+            barra.addEventListener('keydown',function(event){
+                if (event.key == 'Enter'){
+                    var id_str = event.target.id
+                    var id_int = []
+                    for (var char = 0; char<id_str.length;char++){
+                        if (!isNaN(id_str[char])){
+                            id_int.push(id_str[char])
+                            if (id_str[char+1] == '-'){
+                                id_int.push(id_str[char+1])
+                            }
+                            
+                            
+                        }
+                    }
+                    var int1 = ''
+                    var int2 = ''
+                    var chave = 0
+                    id_int.forEach(function(v){
+                        if(v == '-'){
+                            chave =1
+                        }
+                        if(v!= '-' && chave ==0){
+                            int1 += v
+                            
+                        }
+                        if(v!= '-' && chave >0){
+                            int2 += v
+                        }
+                    })
+                   var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)
+                   
+                   if (Number(int1)+1 < numero_de_linhas){
+                    nextbar.focus()
+                   }
+                }
+               })
             tr.appendChild(td)
             
         }
@@ -533,9 +842,6 @@ function NovoCSV(){
         const div_ta2 = document.createElement('div')
         div_ta2.classList.add('container_tab')
         div_ta2.id = 'div_ta2'
-        div_ta2.style.display = 'flex'
-        div_ta2.style.width = '100%'
-        div_ta2.style.justifyContent = 'flex-start'    
         div_tab.classList.add('container_tab')
         div_tab.id = 'div_tab'
         divmax.id = 'divmax'
@@ -556,10 +862,6 @@ function NovoCSV(){
         div_tab.appendChild(add_btn)
         div_tab.appendChild(document.createElement('br'))
         div_ta2.appendChild(add_btnL)
-        div_ta2.style.margin = '0px'
-        div_ta2.style.padding = '0px'
-        div_tab.style.margin = '0px'
-        div_tab.style.padding = '0px'
         var remo_col = document.createElement('button')
         remo_col.classList.add('removebutton')
         remo_col.onclick = delColl
