@@ -64,7 +64,7 @@ input.addEventListener('change',function(){
         add_btnL.classList.add('addbutton')
         add_btnL.onclick = addLinha
         add_btnL.id ='addL'
-        add_btnL.style.marginLeft = '15px'
+        add_btnL.style.marginBottom = '5px'
         div_tab.appendChild(add_btn)
         div_tab.appendChild(document.createElement('br'))
         div_ta2.appendChild(add_btnL)
@@ -858,7 +858,7 @@ function NovoCSV(){
         add_btnL.classList.add('addbutton')
         add_btnL.onclick = addLinha
         add_btnL.id ='addL'
-        add_btnL.style.marginLeft = '15px'
+        add_btnL.style.marginBottom = '5px'
         div_tab.appendChild(add_btn)
         div_tab.appendChild(document.createElement('br'))
         div_ta2.appendChild(add_btnL)
