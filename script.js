@@ -205,12 +205,7 @@ function CriarTb(table_data){
             else{
               barra.value = table_data[table_row][table_collum]
             }
-            if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*10)+'px'
-            }
-            else{
-                barra.style.width = ((barra.value.length+1)*10)+'px'
-            }
+
             barra.style.border = 'none'
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
@@ -309,12 +304,6 @@ function CriarTb(table_data){
             else{
               barra.value = table_data[table_row][table_collum]
             }
-            if (barra.value.length ==0){
-                barra.style.width = ((barra.value.length+2)*10)+'px'
-            }
-            else{
-                barra.style.width = ((barra.value.length+1)*9)+'px'
-            }
             barra.style.backgroundColor = 'transparent'
             barra.style.border = 'none'
             barra.style.textAlign = 'center'
@@ -405,7 +394,6 @@ window.document.addEventListener('keydown',function(event){
         if (event.target.id == ids){
            var s = document.getElementById(ids)
            s.addEventListener('input',function(){
-            s.style.width = ((s.value.length+1)*11)+'px'
             salvar.style.display = 'block'
            
             //percorrer a string do id e retornar o id no inteiro
@@ -468,7 +456,6 @@ function addLinha(){
         barra.value = ''
         barra.style.backgroundColor = 'transparent'
         barra.classList.add('entrada')
-        barra.style.width = ((barra.value.length+2)*10)+'px'
         td.appendChild(barra)
         tr.appendChild(td)
         td.addEventListener('click',function(clicado){
@@ -567,7 +554,6 @@ function addColuna(){
             barra.classList.add('entrada')
             barra.style.backgroundColor = 'transparent'
             barra.style.fontWeight = '600'
-            barra.style.width = ((barra.value.length+1)*10)+'px'
             barra.value = ''
             th.appendChild(barra)
             tr.appendChild(th)
@@ -656,7 +642,6 @@ function addColuna(){
             barra.style.backgroundColor = 'transparent'
             barra.style.textAlign = 'center'
             barra.classList.add('entrada')
-            barra.style.width = ((barra.value.length+1)*10)+'px'
             td.appendChild(barra)
             td.addEventListener('click',function(clicado){
                 var id_str = clicado.target.id
