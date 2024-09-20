@@ -192,6 +192,9 @@ function CriarTb(table_data){
         tb_tr.id = `tr${table_row}`
         //percorrer cada elemento do array do array
         for (var table_collum = 0;table_collum<table_data[table_row].length;table_collum++){
+            //criar o paragrafo da celula
+            let p = document.createElement('p')
+            p.id = `p-${table_row}-${table_collum}`
             var tb_th = document.createElement('th')
             tb_th.id = `row-${table_row}-col-${table_collum}`
             var barra = document.createElement('input')
@@ -213,6 +216,7 @@ function CriarTb(table_data){
             barra.classList.add('entrada')
             tb_th.appendChild(barra)
             tb_tr.appendChild(tb_th)
+         
             tb_th.addEventListener('click',function(clicado){
                 var id_str = clicado.target.id
                 var id_int = []
@@ -241,12 +245,15 @@ function CriarTb(table_data){
                 int2 += v
                 }
                 })
-
+                //barra da celula clicada
                 var bar = document.getElementById(`cell-${int1}-${int2}`)
+                //paragrafo da celula clicada
+                var pa = document.getElementById(`p-${int1}-${int2}`)
+                bar.style.display = 'block'
+                p.style.display = 'none'
                 bar.focus()
             })
-            barra.addEventListener('keydown',function(event){
-                if (event.key == 'Enter'){
+            barra.addEventListener('blur',function(event){
                     var id_str = event.target.id
                     var id_int = []
                     for (var char = 0; char<id_str.length;char++){
@@ -274,12 +281,15 @@ function CriarTb(table_data){
                             int2 += v
                         }
                     })
-                   var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)
-                   if (Number(int1)+1 < numero_de_linhas){
+                    var txto = document.getElementById(`cell-${Number(int1)}-${int2}`).value // pega o texto do input e coloca na vareavel
+                    p.textContent = txto //bota a variavel no paragrafo 
+                    document.getElementById(`row-${int1}-col-${int2}`).appendChild(p) //bota o paragrafo na celula
+                    document.getElementById(`cell-${Number(int1)}-${int2}`).style.display = 'none' //oculta a barra
+                    document.getElementById(`p-${Number(int1)}-${int2}`).style.display = 'block' //mostrar paragrado
+                    var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)
+                    if (Number(int1)+1 < numero_de_linhas){
                     nextbar.focus()
-                   }
-                  
-                }
+                    }
                })
             table.appendChild(tb_tr)
             
