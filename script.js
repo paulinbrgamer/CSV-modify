@@ -381,7 +381,7 @@ function CriarTb(table_data){
                         }
                     })
                     var txto = document.getElementById(`cell-${int1}-${int2}`).value // pega o texto do input e coloca na vareavel
-                    p.textContent = txto //bota a variavel no paragrafo 
+                    p.textContent = txto //bota a variavel no paragrafo                  
                     document.getElementById(`row-${int1}-col-${int2}`).appendChild(p) //bota o paragrafo na celula
                     document.getElementById(`cell-${Number(int1)}-${int2}`).style.display = 'none' //oculta a barra
                     document.getElementById(`p-${Number(int1)}-${int2}`).style.display = 'block' //mostrar paragrado
@@ -602,7 +602,7 @@ window.document.addEventListener('keydown',function(event){
            var s = document.getElementById(ids)
            s.addEventListener('input',function(){
             salvar.style.display = 'block'
-           
+            document.getElementById(ids).style.width = (s.value.length*10)+'px'
             //percorrer a string do id e retornar o id no inteiro
             var id_str = s.id
             var id_int = []
