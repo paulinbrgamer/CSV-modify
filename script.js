@@ -201,6 +201,8 @@ function CriarTb(table_data){
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
             barra.classList.add('entrada')
+            tb_th.style.padding = '0px'
+            barra.style.padding = '0px'
             array_cells.push(barra.id)
             if (table_data[table_row][table_collum] === undefined){
                 barra.value = ''
@@ -208,15 +210,8 @@ function CriarTb(table_data){
             else{
               barra.value = table_data[table_row][table_collum]
             }
-
-            barra.style.border = 'none'
-            barra.style.backgroundColor = 'transparent'
-            barra.style.textAlign = 'center'
-            barra.style.fontWeight = '600'
-            barra.classList.add('entrada')
             tb_th.appendChild(barra)
             tb_tr.appendChild(tb_th)
-         
             tb_th.addEventListener('click',function(clicado){
                 var id_str = clicado.target.id
                 var id_int = []
@@ -314,9 +309,6 @@ function CriarTb(table_data){
             else{
               barra.value = table_data[table_row][table_collum]
             }
-            barra.style.backgroundColor = 'transparent'
-            barra.style.border = 'none'
-            barra.style.textAlign = 'center'
             barra.classList.add('entrada')
             tb_td.appendChild(barra)
             tb_tr.appendChild(tb_td)
