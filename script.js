@@ -253,7 +253,19 @@ function CriarTb(table_data){
                     nextbar.click()
                 }
                 else{
-                    document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                    if (Number(int2)+1 < numero_de_colunas){
+                    int2++
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    else{
+                    int2 = 0
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    
                 }
                 }
                 if(event.key == 'Tab'){
@@ -288,9 +300,20 @@ function CriarTb(table_data){
                         nextbar.click()
                     }
                     else{
-                        document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                        if (Number(int1)+1 < numero_de_linhas){
+                        int2 = 0
+                        int1++
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        else{
+                        int2 = 0
+                        int1 = 0
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        
                     }
-                    
                 }
             })
             tb_th.addEventListener('click',function(clicado){
@@ -501,7 +524,19 @@ function CriarTb(table_data){
                     nextbar.click()
                 }
                 else{
-                    document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                    if (Number(int2)+1 < numero_de_colunas){
+                    int2++
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    else{
+                    int2 = 0
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    
                 }
                 }
                 if(event.key == 'Tab'){
@@ -537,9 +572,22 @@ function CriarTb(table_data){
                         nextbar.click()
                     }
                     else{
-                        document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                        if (Number(int1)+1 < numero_de_linhas){
+                        int2 = 0
+                        int1++
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        else{
+                            int2 = 0
+                        int1 = 0
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        
                     }
                 }
+                
             })
             table.appendChild(tb_tr)
         }
@@ -725,6 +773,21 @@ function addLinha(){
             if (Number(int1)+1 < numero_de_linhas){
                 nextbar.click()
             }
+            else{
+                if (Number(int2)+1 < numero_de_colunas){
+                int2++
+                int1 = 0
+                nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                nextbar.click()  
+                }
+                else{
+                int2 = 0
+                int1 = 0
+                nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                nextbar.click()  
+                }
+                
+            }
             }
             if(event.key == 'Tab'){
                 event.preventDefault()
@@ -759,7 +822,19 @@ function addLinha(){
                     nextbar.click()
                 }
                 else{
-                    document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                    if (Number(int1)+1 < numero_de_linhas){
+                    int2 = 0
+                    int1++
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    else{
+                        int2 = 0
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    
                 }
             }
         })
@@ -904,7 +979,19 @@ function addColuna(){
                     nextbar.click()
                 }
                 else{
-                    document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                    if (Number(int2)+1 < numero_de_colunas){
+                    int2++
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    else{
+                    int2 = 0
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    
                 }
                 }
                 if(event.key == 'Tab'){
@@ -940,7 +1027,19 @@ function addColuna(){
                         nextbar.click()
                     }
                     else{
-                        document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                        if (Number(int1)+1 < numero_de_linhas){
+                        int2 = 0
+                        int1++
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        else{
+                            int2 = 0
+                        int1 = 0
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        
                     }
                 }
             })
@@ -1069,7 +1168,19 @@ function addColuna(){
                     nextbar.click()
                 }
                 else{
-                    document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                    if (Number(int2)+1 < numero_de_colunas){
+                    int2++
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    else{
+                    int2 = 0
+                    int1 = 0
+                    nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                    nextbar.click()  
+                    }
+                    
                 }
                 }
                 if(event.key == 'Tab'){
@@ -1105,7 +1216,19 @@ function addColuna(){
                         nextbar.click()
                     }
                     else{
-                        document.getElementById(`cell-${Number(int1)}-${int2}`).blur()
+                        if (Number(int1)+1 < numero_de_linhas){
+                        int2 = 0
+                        int1++
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        else{
+                            int2 = 0
+                        int1 = 0
+                        nextbar =  document.getElementById(`row-${Number(int1)}-col-${Number(int2)}`)
+                        nextbar.click()  
+                        }
+                        
                     }
                 }
             })
