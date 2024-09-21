@@ -206,7 +206,7 @@ function CriarTb(table_data){
             barra.style.padding = '4px'
             p.style.minHeight = '20px'
             p.style.minWidth = '25px'
-            p.style.padding = '4px'
+            p.style.padding = '6px'
             array_cells.push(barra.id)
             //colocar o valor da celula no paragrafo e no input, desaativando o input para que fique só paragrafo
             if (table_data[table_row][table_collum] == ' '){
@@ -405,7 +405,7 @@ function CriarTb(table_data){
             barra.style.padding = '4px'
             p.style.minHeight = '20px'
             p.style.minWidth = '25px'
-            p.style.padding = '4px'
+            p.style.padding = '6px'
             array_cells.push(barra.id)
 
             //colocar o valor da celula no paragrafo e no input, desaativando o input para que fique só paragrafo
@@ -666,7 +666,7 @@ function addLinha(){
         td.style.Height = '4px'
         barra.style.padding = '4px'
         p.style.minHeight = '20px'
-        p.style.padding = '4px'
+        p.style.padding = '6px'
         barra.style.display = 'none'
         td.appendChild(p)
         array_cells.push(barra.id)
@@ -872,7 +872,7 @@ function addColuna(){
             barra.style.padding = '4px'
             p.style.minHeight = '20px'
             p.style.minWidth = '20px'
-            p.style.padding = '4px'
+            p.style.padding = '6px'
             barra.style.display = 'none'
             th.appendChild(p)
             th.appendChild(barra)
@@ -1062,7 +1062,7 @@ function addColuna(){
             td.style.Height = '4px'
             barra.style.padding = '4px'
             p.style.minHeight = '20px'
-            p.style.padding = '4px'
+            p.style.padding = '6px'
             barra.style.display = 'none'
             td.appendChild(p)
             td.appendChild(barra)
