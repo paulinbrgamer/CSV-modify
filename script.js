@@ -12,6 +12,10 @@ var salvar = document.getElementById('save')
 var numero_de_colunas = 0
 var numero_de_linhas = 0
 //salvar cores
+if (sessionStorage.getItem('header') == null){
+    sessionStorage.setItem('header','#ffffff')
+    sessionStorage.setItem('line','#ffffff')
+}
 var lncor = document.getElementById('l_color')
 var hdcor = document.getElementById('hd_color')
 hdcor.value = sessionStorage.getItem('header')
