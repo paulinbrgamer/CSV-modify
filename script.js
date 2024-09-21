@@ -201,8 +201,9 @@ function CriarTb(table_data){
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
             barra.classList.add('entrada')
-            tb_th.style.padding = '3px'
-            barra.style.padding = '3px'
+            tb_th.style.padding = '4px'
+            barra.style.padding = '4px'
+            p.style.padding = '4px'
             barra.style.fontWeight = '600'
             p.style.fontWeight = '600'
             array_cells.push(barra.id)
@@ -219,6 +220,72 @@ function CriarTb(table_data){
             tb_th.appendChild(p)
             tb_th.appendChild(barra)
             tb_tr.appendChild(tb_th)
+            barra.addEventListener('keydown',function(event){
+                if(event.key == 'Enter'){
+                var id_str = event.target.id
+                var id_int = []
+                for (var char = 0; char<id_str.length;char++){
+                    if (!isNaN(id_str[char])){
+                        id_int.push(id_str[char])
+                        if (id_str[char+1] == '-'){
+                            id_int.push(id_str[char+1])
+                        }
+                    }
+                }
+                var int1 = ''
+                var int2 = ''
+                var chave = 0
+                id_int.forEach(function(v){
+                if(v == '-'){
+                        chave =1
+                }
+                if(v!= '-' && chave ==0){
+                        int1 += v
+                        
+                }
+                if(v!= '-' && chave >0){
+                        int2 += v
+                }
+                })
+                var nextbar =  document.getElementById(`row-${Number(int1)+1}-col-${int2}`)
+                if (Number(int1)+1 < numero_de_linhas){
+                    nextbar.click()
+                }
+                }
+                if(event.key == 'Tab'){
+                    event.preventDefault()
+                    var id_str = event.target.id
+                    var id_int = []
+                    for (var char = 0; char<id_str.length;char++){
+                        if (!isNaN(id_str[char])){
+                            id_int.push(id_str[char])
+                            if (id_str[char+1] == '-'){
+                                id_int.push(id_str[char+1])
+                            }
+                        }
+                    }
+                    var int1 = ''
+                    var int2 = ''
+                    var chave = 0
+                    id_int.forEach(function(v){
+                    if(v == '-'){
+                            chave =1
+                    }
+                    if(v!= '-' && chave ==0){
+                            int1 += v
+                            
+                    }
+                    if(v!= '-' && chave >0){
+                            int2 += v
+                    }
+                    })
+                    var nextbar =  document.getElementById(`row-${Number(int1)}-col-${int2+1}`)
+                    console.log(nextbar)
+                    if (Number(int2+1) < numero_de_colunas){
+                        nextbar.click()
+                    }
+                }
+            })
             tb_th.addEventListener('click',function(clicado){
                 var id_str = clicado.target.id
                 var id_int = []
@@ -289,39 +356,6 @@ function CriarTb(table_data){
                     document.getElementById(`cell-${Number(int1)}-${int2}`).style.display = 'none' //oculta a barra
                     document.getElementById(`p-${Number(int1)}-${int2}`).style.display = 'block' //mostrar paragrado
             })
-            barra.addEventListener('keydown',function(event){
-                if(event.key == 'Enter'){
-                var id_str = event.target.id
-                var id_int = []
-                for (var char = 0; char<id_str.length;char++){
-                    if (!isNaN(id_str[char])){
-                        id_int.push(id_str[char])
-                        if (id_str[char+1] == '-'){
-                            id_int.push(id_str[char+1])
-                        }
-                    }
-                }
-                var int1 = ''
-                var int2 = ''
-                var chave = 0
-                id_int.forEach(function(v){
-                if(v == '-'){
-                        chave =1
-                }
-                if(v!= '-' && chave ==0){
-                        int1 += v
-                        
-                }
-                if(v!= '-' && chave >0){
-                        int2 += v
-                }
-                })
-                var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)  
-                if (Number(int1)+1 < numero_de_linhas){
-                    nextbar.focus()
-                }
-            }
-            })
             table.appendChild(tb_tr)     
             }
        }
@@ -338,8 +372,10 @@ function CriarTb(table_data){
             var barra = document.createElement('input')
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
-            tb_td.style.padding = '4px'
-            barra.style.padding = '3px'
+            tb_td.style.Height = '4px'
+            barra.style.padding = '4px'
+            p.style.minHeight = '20px'
+            p.style.padding = '4px'
             array_cells.push(barra.id)
 
             //colocar o valor da celula no paragrafo e no input, desaativando o input para que fique só paragrafo
@@ -453,9 +489,9 @@ function CriarTb(table_data){
                         int2 += v
                 }
                 })
-                var nextbar =  document.getElementById(`cell-${Number(int1)+1}-${int2}`)  
+                var nextbar =  document.getElementById(`row-${Number(int1)+1}-col-${int2}`)
                 if (Number(int1)+1 < numero_de_linhas){
-                    nextbar.focus()
+                    nextbar.click()
                 }
             }
             })
