@@ -206,12 +206,17 @@ function CriarTb(table_data){
             barra.style.fontWeight = '600'
             p.style.fontWeight = '600'
             array_cells.push(barra.id)
-            if (table_data[table_row][table_collum] === undefined){
+            //colocar o valor da celula no paragrafo e no input, desaativando o input para que fique só paragrafo
+            if (table_data[table_row][table_collum] == ' '){
                 barra.value = ''
+                p.textContent = ''
             }
             else{
               barra.value = table_data[table_row][table_collum]
+              p.textContent = table_data[table_row][table_collum]
             }
+            barra.style.display = 'none'
+            tb_th.appendChild(p)
             tb_th.appendChild(barra)
             tb_tr.appendChild(tb_th)
             tb_th.addEventListener('click',function(clicado){
@@ -278,7 +283,7 @@ function CriarTb(table_data){
                             int2 += v
                         }
                     })
-                    var txto = document.getElementById(`cell-${Number(int1)}-${int2}`).value // pega o texto do input e coloca na vareavel
+                    var txto = document.getElementById(`cell-${int1}-${int2}`).value // pega o texto do input e coloca na vareavel
                     p.textContent = txto //bota a variavel no paragrafo 
                     document.getElementById(`row-${int1}-col-${int2}`).appendChild(p) //bota o paragrafo na celula
                     document.getElementById(`cell-${Number(int1)}-${int2}`).style.display = 'none' //oculta a barra
@@ -317,10 +322,8 @@ function CriarTb(table_data){
                 }
             }
             })
-            table.appendChild(tb_tr)
-            
-            
-    }
+            table.appendChild(tb_tr)     
+            }
        }
        else{
         //criar linha nova
@@ -335,14 +338,22 @@ function CriarTb(table_data){
             var barra = document.createElement('input')
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
+            tb_td.style.padding = '4px'
+            barra.style.padding = '3px'
             array_cells.push(barra.id)
+
+            //colocar o valor da celula no paragrafo e no input, desaativando o input para que fique só paragrafo
             if (table_data[table_row][table_collum] == ' '){
                 barra.value = ''
+                p.textContent = ''
             }
             else{
               barra.value = table_data[table_row][table_collum]
+              p.textContent = table_data[table_row][table_collum]
             }
-            barra.classList.add('entrada')
+            barra.style.display = 'none'
+            tb_td.appendChild(p)
+            //termina aqui
             tb_td.appendChild(barra)
             tb_tr.appendChild(tb_td)
             tb_td.addEventListener('click',function(clicado){
@@ -373,9 +384,12 @@ function CriarTb(table_data){
                 int2 += v
                 }
                 })
-                console.log("int1 = "+int1)
-                console.log("int2 = "+int2)
+                //barra da celula clicada
                 var bar = document.getElementById(`cell-${int1}-${int2}`)
+                //paragrafo da celula clicada
+                var pa = document.getElementById(`p-${int1}-${int2}`)
+                bar.style.display = 'block'
+                p.style.display = 'none'
                 bar.focus()
             })
             barra.addEventListener('blur',function(event){
@@ -422,8 +436,6 @@ function CriarTb(table_data){
                         if (id_str[char+1] == '-'){
                             id_int.push(id_str[char+1])
                         }
-                        
-                        
                     }
                 }
                 var int1 = ''
@@ -448,12 +460,9 @@ function CriarTb(table_data){
             }
             })
             table.appendChild(tb_tr)
-            
         }
-       } 
-       
+       }  
     }
-    
     return table
 }
 
