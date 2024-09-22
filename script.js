@@ -206,6 +206,7 @@ function CriarTb(table_data){
             barra.id = `cell-${table_row}-${table_collum}`
             barra.classList.add('entrada')
             barra.style.fontWeight = '600'
+            barra.style.Width = (barra.value.length*10)+'px'
             p.style.fontWeight = '600'
             barra.style.padding = '4px'
             p.style.minHeight = '20px'
@@ -408,6 +409,8 @@ function CriarTb(table_data){
             barra.type = 'text'
             barra.id = `cell-${table_row}-${table_collum}`
             barra.style.padding = '4px'
+            barra.style.minWidth = '100%'
+            barra.style.boxSizing = 'border-box'
             p.style.minHeight = '20px'
             p.style.minWidth = '25px'
             p.style.width = 'max-content'
@@ -608,7 +611,7 @@ window.document.addEventListener('keydown',function(event){
            var s = document.getElementById(ids)
            s.addEventListener('input',function(){
             salvar.style.display = 'block'
-            document.getElementById(ids).style.width = (s.value.length*10)+'px'
+            document.getElementById(ids).style.minWidth = (s.value.length*10)+'px'
             //percorrer a string do id e retornar o id no inteiro
             var id_str = s.id
             var id_int = []
